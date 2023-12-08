@@ -77,6 +77,8 @@
 				12A9ECD92B2252E5005BF0BA /* Main */,
 				FAEE247E2B1E97230024C97E /* TabView.swift */,
 				FA6242A82B1F65CF00953394 /* TabBarView.swift */,
+				3B4AC13E2B224076000D460A /* CategoriesView.swift */,
+				3B4AC1402B224513000D460A /* SearchBar.swift */,
 				101C394E2B1CA56000E0B7C4 /* Assets.xcassets */,
 				101C39502B1CA56000E0B7C4 /* Preview Content */,
 			);
