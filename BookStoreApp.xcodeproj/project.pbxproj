@@ -13,6 +13,8 @@
 		101C39522B1CA56000E0B7C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 101C39512B1CA56000E0B7C4 /* Preview Assets.xcassets */; };
 		101C39592B1CA5A300E0B7C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 101C39582B1CA5A300E0B7C4 /* .gitignore */; };
 		FA6242A92B1F65CF00953394 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6242A82B1F65CF00953394 /* TabBarView.swift */; };
+		FA6E26942B1FB6A5002B5A96 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E26932B1FB6A5002B5A96 /* DetailView.swift */; };
+		FA6E26962B1FC87A002B5A96 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6E26952B1FC87A002B5A96 /* ButtonView.swift */; };
 		FAEE247F2B1E97230024C97E /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE247E2B1E97230024C97E /* TabView.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		101C39582B1CA5A300E0B7C4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		101C395A2B1CA5BB00E0B7C4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA6242A82B1F65CF00953394 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		FA6E26932B1FB6A5002B5A96 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		FA6E26952B1FC87A002B5A96 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		FAEE247E2B1E97230024C97E /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +68,8 @@
 				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
 				FAEE247E2B1E97230024C97E /* TabView.swift */,
 				FA6242A82B1F65CF00953394 /* TabBarView.swift */,
+				FA6E26932B1FB6A5002B5A96 /* DetailView.swift */,
+				FA6E26952B1FC87A002B5A96 /* ButtonView.swift */,
 				101C394E2B1CA56000E0B7C4 /* Assets.xcassets */,
 				101C39502B1CA56000E0B7C4 /* Preview Content */,
 			);
@@ -151,7 +157,9 @@
 			files = (
 				101C394D2B1CA55D00E0B7C4 /* ContentView.swift in Sources */,
 				FAEE247F2B1E97230024C97E /* TabView.swift in Sources */,
+				FA6E26962B1FC87A002B5A96 /* ButtonView.swift in Sources */,
 				FA6242A92B1F65CF00953394 /* TabBarView.swift in Sources */,
+				FA6E26942B1FB6A5002B5A96 /* DetailView.swift in Sources */,
 				101C394B2B1CA55D00E0B7C4 /* BookStoreAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
