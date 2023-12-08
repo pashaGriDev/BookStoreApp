@@ -14,6 +14,17 @@ class Network <T: Service> {
     
     init() { }
     
+    //MARK: - await/async
+    func request(service: T) async throws -> (Data, URLResponse) {
+        return try await call(service.urlRequst)
+    }
+    
+    func request <U: Decodable>(service: T, model: U.Type) async throws -> U {
+        let (data, _) = try await call(service.urlRequst)
+        return try decoder.decode(model.self, from: data)
+    }
+    
+    //MARK: - GCD
     func request(service: T, comlition: @escaping (Result<Data, Error>) -> Void) {
         call(service.urlRequst, complition: comlition)
     }
@@ -34,6 +45,10 @@ class Network <T: Service> {
 }
 
 extension Network {
+    private func call ( _ requst: URLRequest ) async throws -> (Data, URLResponse) {
+        return try await urlSession.data(for: requst)
+    }
+    
     private func call (_ request: URLRequest, deliverQueue: DispatchQueue = DispatchQueue.main, complition: @escaping (Result<Data, Error>) -> Void) {
         urlSession.dataTask(with: request) { data, _, error in
             if let error {

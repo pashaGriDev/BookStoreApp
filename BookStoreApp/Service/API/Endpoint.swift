@@ -9,20 +9,27 @@ import Foundation
 
 
 enum Endpoint {
-    
+    case recent
 }
 
 extension Endpoint: Service {
     var baseURL: String {
-        return "https://openlibrary.org/"
+        return "https://openlibrary.org"
     }
     
     var path: String {
-        return ""
+        switch self {
+        case .recent:
+            return "/recentchanges.json"
+        }
+        
     }
     
     var task: Task {
-        return .requstParametr(parameters: ["str": "str"])
+        switch self {
+        case .recent:
+            return .requst
+        }
     }
     
     var method: ServiceMethod {

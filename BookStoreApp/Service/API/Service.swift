@@ -15,6 +15,7 @@ enum ServiceMethod: String {
 
 enum Task {
     case requstParametr(parameters: [String: Any])
+    case requst
 }
 
 protocol Service {
@@ -47,6 +48,8 @@ extension Service {
         switch task {
         case .requstParametr(let parameters):
             items = parameters.map({ URLQueryItem(name: $0, value: $1 as? String) })
+        case .requst:
+            items = [URLQueryItem]()
         }
         return items
     }
