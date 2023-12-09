@@ -78,9 +78,11 @@
 		101C39492B1CA55D00E0B7C4 /* BookStoreApp */ = {
 			isa = PBXGroup;
 			children = (
-				FA7AB5652B24AE8000CC23CB /* Views */,
-				12CEB5AC2B1FA97C0061167F /* Service */,
 				101C394A2B1CA55D00E0B7C4 /* BookStoreAppApp.swift */,
+				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
+				10D7D2752B24B1F900DBE1C9 /* Favorite */,
+				10D7D2732B24B1BD00DBE1C9 /* Detail */,
+				12CEB5AC2B1FA97C0061167F /* Service */,
 				12A9ECD92B2252E5005BF0BA /* Main */,
 				FAEE247E2B1E97230024C97E /* TabView.swift */,
 				FA6242A82B1F65CF00953394 /* TabBarView.swift */,
@@ -98,6 +100,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		10D7D2732B24B1BD00DBE1C9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				FA7AB5662B24AE8000CC23CB /* DetailView.swift */,
+				10D7D2742B24B1DD00DBE1C9 /* Components */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		10D7D2742B24B1DD00DBE1C9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				FA7AB5682B24AE8000CC23CB /* ButtonView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		10D7D2752B24B1F900DBE1C9 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				FA7AB5692B24AE8000CC23CB /* FavoriteBooksView.swift */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
 		12A9ECD62B210F19005BF0BA /* ModelData */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,7 +137,6 @@
 		12A9ECD92B2252E5005BF0BA /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
 				12A9ECDA2B225300005BF0BA /* MainViewModel.swift */,
 			);
 			path = Main;
@@ -133,24 +159,6 @@
 				12CEB5B02B1FAC6D0061167F /* Endpoint.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		FA7AB5652B24AE8000CC23CB /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FA7AB5662B24AE8000CC23CB /* DetailView.swift */,
-				FA7AB5672B24AE8000CC23CB /* Resources */,
-				FA7AB5692B24AE8000CC23CB /* FavoriteBooksView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		FA7AB5672B24AE8000CC23CB /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FA7AB5682B24AE8000CC23CB /* ButtonView.swift */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
