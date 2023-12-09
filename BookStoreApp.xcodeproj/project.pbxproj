@@ -22,6 +22,9 @@
 		FA7AB56A2B24AE8000CC23CB /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB5662B24AE8000CC23CB /* DetailView.swift */; };
 		FA7AB56B2B24AE8000CC23CB /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB5682B24AE8000CC23CB /* ButtonView.swift */; };
 		FA7AB56C2B24AE8000CC23CB /* FavoriteBooksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB5692B24AE8000CC23CB /* FavoriteBooksView.swift */; };
+		FA7AB56E2B24D0D100CC23CB /* MockBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB56D2B24D0D100CC23CB /* MockBook.swift */; };
+		FA7AB5702B24D25000CC23CB /* AsyncCoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */; };
+		FA7AB5722B24DE4200CC23CB /* BookсardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */; };
 		FAEE247F2B1E97230024C97E /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEE247E2B1E97230024C97E /* TabView.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +46,9 @@
 		FA7AB5662B24AE8000CC23CB /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		FA7AB5682B24AE8000CC23CB /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		FA7AB5692B24AE8000CC23CB /* FavoriteBooksView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteBooksView.swift; sourceTree = "<group>"; };
+		FA7AB56D2B24D0D100CC23CB /* MockBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBook.swift; sourceTree = "<group>"; };
+		FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCoverImage.swift; sourceTree = "<group>"; };
+		FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookсardRowView.swift"; sourceTree = "<group>"; };
 		FAEE247E2B1E97230024C97E /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,8 +86,10 @@
 			children = (
 				101C394A2B1CA55D00E0B7C4 /* BookStoreAppApp.swift */,
 				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
+				FA7AB56D2B24D0D100CC23CB /* MockBook.swift */,
 				10D7D2752B24B1F900DBE1C9 /* Favorite */,
 				10D7D2732B24B1BD00DBE1C9 /* Detail */,
+				10D7D2742B24B1DD00DBE1C9 /* Components */,
 				12CEB5AC2B1FA97C0061167F /* Service */,
 				12A9ECD92B2252E5005BF0BA /* Main */,
 				FAEE247E2B1E97230024C97E /* TabView.swift */,
@@ -104,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				FA7AB5662B24AE8000CC23CB /* DetailView.swift */,
-				10D7D2742B24B1DD00DBE1C9 /* Components */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -112,6 +119,8 @@
 		10D7D2742B24B1DD00DBE1C9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */,
+				FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */,
 				FA7AB5682B24AE8000CC23CB /* ButtonView.swift */,
 			);
 			path = Components;
@@ -234,9 +243,12 @@
 			files = (
 				101C394D2B1CA55D00E0B7C4 /* ContentView.swift in Sources */,
 				12A9ECD82B210FA5005BF0BA /* SearchDataModel.swift in Sources */,
+				FA7AB56E2B24D0D100CC23CB /* MockBook.swift in Sources */,
 				FA7AB56B2B24AE8000CC23CB /* ButtonView.swift in Sources */,
 				12A9ECDD2B2253DE005BF0BA /* RecentModel.swift in Sources */,
 				FAEE247F2B1E97230024C97E /* TabView.swift in Sources */,
+				FA7AB5722B24DE4200CC23CB /* BookсardRowView.swift in Sources */,
+				FA7AB5702B24D25000CC23CB /* AsyncCoverImage.swift in Sources */,
 				12CEB5AF2B1FA9F20061167F /* Service.swift in Sources */,
 				FA7AB56A2B24AE8000CC23CB /* DetailView.swift in Sources */,
 				FA6242A92B1F65CF00953394 /* TabBarView.swift in Sources */,
