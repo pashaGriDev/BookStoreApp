@@ -70,9 +70,7 @@
 				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
 				FAEE247E2B1E97230024C97E /* TabView.swift */,
 				FA6242A82B1F65CF00953394 /* TabBarView.swift */,
-				FA6E26932B1FB6A5002B5A96 /* DetailView.swift */,
-				FA3046A02B23539C00A7E7D1 /* FavoriteBooksView.swift */,
-				FA6E26952B1FC87A002B5A96 /* ButtonView.swift */,
+				FA215B9C2B24AA9E003BCDFC /* Views */,
 				101C394E2B1CA56000E0B7C4 /* Assets.xcassets */,
 				101C39502B1CA56000E0B7C4 /* Preview Content */,
 			);
@@ -85,6 +83,24 @@
 				101C39512B1CA56000E0B7C4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FA215B9C2B24AA9E003BCDFC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E26932B1FB6A5002B5A96 /* DetailView.swift */,
+				FA215B9D2B24AAB6003BCDFC /* Resources */,
+				FA3046A02B23539C00A7E7D1 /* FavoriteBooksView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA215B9D2B24AAB6003BCDFC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E26952B1FC87A002B5A96 /* ButtonView.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
