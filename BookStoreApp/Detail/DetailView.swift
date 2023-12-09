@@ -7,20 +7,8 @@
 
 import SwiftUI
 
-struct Book: Identifiable, Hashable {
-    var id = UUID()
-    var title: String
-    var author: String
-    var category: String
-    var rating: Double
-    var publishYear: Int
-    var numberOfPages: Int
-    var coverImageURL: URL
-    var description: String
-}
-
 struct DetailView: View {
-    let book: Book
+    let book: MockBook
     @State private var isFavourite = false
     
     var body: some View {
@@ -30,24 +18,8 @@ struct DetailView: View {
                     .font(.largeTitle)
                 
                 HStack {
-                    AsyncImage(url: book.coverImageURL) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .clipShape(.rect(cornerRadius: 8))
-                        } else if phase.error != nil {
-                            Image(systemName: "xmark.circle")
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                            Text("Image loading error.")
-                                .font(.caption)
-                        } else {
-                            ProgressView()
-                        }
-                    }
-                    .frame(maxWidth: 138, maxHeight: 214)
-                    .padding(.trailing, 8)
+                    AsyncCoverImage(url: book.coverImageURL, cornerRadius: 8)
+                        .frame(maxWidth: 138, maxHeight: 214)
                     
                     Spacer()
                     
@@ -73,11 +45,12 @@ struct DetailView: View {
                             action: {}
                         )
                     }
-                    .frame(maxHeight: 214)
                     
                     Spacer()
                 }
                 .padding([.leading, .trailing])
+                
+                Divider()
                 
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -114,14 +87,5 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(book: Book(
-        title: "The Lord of the Rings",
-        author: "J.R.R. Tolkien",
-        category: "Fantasy",
-        rating: 4.53,
-        publishYear: 1954, 
-        numberOfPages: 1193,
-        coverImageURL: URL(string: "https://covers.openlibrary.org/b/id/258027-L.jpg")!,
-        description: "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
-    ))
+    DetailView(book: MockBook.getBook())
 }
