@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct Book {
+struct Book: Identifiable, Hashable {
+    var id = UUID()
     var title: String
     var author: String
     var category: String
@@ -34,7 +35,7 @@ struct DetailView: View {
                             image
                                 .resizable()
                                 .scaledToFit()
-                                .clipShape(.rect(cornerRadius: 10))
+                                .clipShape(.rect(cornerRadius: 8))
                         } else if phase.error != nil {
                             Image(systemName: "xmark.circle")
                                 .resizable()
@@ -48,6 +49,8 @@ struct DetailView: View {
                     .frame(maxWidth: 138, maxHeight: 214)
                     .padding(.trailing, 8)
                     
+                    Spacer()
+                    
                     VStack(alignment: .leading) {
                         Text("Author: \(book.author)")
                             .padding(.bottom, 5)
@@ -56,12 +59,25 @@ struct DetailView: View {
                         Text("Rating: \(book.rating.formatted())/5")
                             .padding(.bottom, 16)
                         
-                        ButtonView(title: "Add to list", background: .secondary, foreground: .black, action: {})
+                        ButtonView(
+                            title: "Add to list",
+                            background: .secondary,
+                            foreground: .black,
+                            action: {}
+                        )
                         
-                        ButtonView(title: "Read", background: .black, foreground: .white, action: {})
+                        ButtonView(
+                            title: "Read",
+                            background: .black,
+                            foreground: .white,
+                            action: {}
+                        )
                     }
                     .frame(maxHeight: 214)
+                    
+                    Spacer()
                 }
+                .padding([.leading, .trailing])
                 
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -105,7 +121,7 @@ struct DetailView: View {
         rating: 4.53,
         publishYear: 1954, 
         numberOfPages: 1193,
-        coverImageURL: URL(string: "https://covers.openlibrary.org/a/olid/OL26320A.jpg")!,
+        coverImageURL: URL(string: "https://covers.openlibrary.org/b/id/258027-L.jpg")!,
         description: "When Mr. Bilbo Baggins of Bag End announced that he would shortly be celebrating his eleventy-first birthday with a party of special magnificence, there was much talk and excitement in Hobbiton."
     ))
 }

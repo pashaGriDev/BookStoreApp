@@ -20,7 +20,7 @@ struct ButtonView: View {
             .frame(width: 161, height: 40)
             .background(background)
             .foregroundStyle(foreground)
-            .clipShape(.rect(cornerRadius: 5))
+            .clipShape(.rect(cornerRadius: 4))
     }
 }
 
