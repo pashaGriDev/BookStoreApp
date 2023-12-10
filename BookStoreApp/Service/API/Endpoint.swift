@@ -9,7 +9,9 @@ import Foundation
 
 
 enum Endpoint {
+    case search(String, String?)
     case recent
+    case subject(SubjectCategory)
 }
 
 extension Endpoint: Service {
@@ -19,15 +21,22 @@ extension Endpoint: Service {
     
     var path: String {
         switch self {
+        case .search:
+            return "/search.json"
         case .recent:
             return "/recentchanges.json"
+        case let .subject(category):
+            return "/subjects/\(category.rawValue).json"
         }
-        
     }
     
-    var task: Task {
+    var task: NetworkTask {
         switch self {
+        case let .search(q, limit):
+            return .requstParametr(parameters: ["q": q, "limit": limit])
         case .recent:
+            return .requst
+        case .subject(_):
             return .requst
         }
     }
@@ -35,6 +44,9 @@ extension Endpoint: Service {
     var method: ServiceMethod {
         return .get
     }
-    
-    
+}
+
+enum SubjectCategory: String {
+    case love = "love"
+    case drama = "drama"
 }

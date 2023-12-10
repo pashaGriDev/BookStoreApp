@@ -14,8 +14,11 @@ class MainViewModel: ObservableObject {
     var service = Network<Endpoint>()
     
     func getData() {
-        async {
-            let test = try await service.request(service: .recent, model: RecentModel.self)
+        Task {
+//            let test = try await service.request(service: .recent, model: [RecentModel].self)
+//            let search = try await service.request(service: .search("Happy Reading", "10"), model: SearchModel.self)
+            let subj = try await service.request(service: .subject(.love), model: SubjectsModel.self)
+            print(subj)
         }
     }
 }

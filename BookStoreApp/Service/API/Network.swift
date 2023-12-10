@@ -9,10 +9,16 @@ import Foundation
 
 
 class Network <T: Service> {
-    private let urlSession = URLSession.shared
-    private let decoder = JSONDecoder()
+    private let urlSession: URLSession
+    private let decoder: JSONDecoder
     
-    init() { }
+    init(
+        urlSession: URLSession = .shared,
+        decoder: JSONDecoder = JSONDecoder()
+    ) {
+        self.urlSession = urlSession
+        self.decoder = decoder
+    }
     
     //MARK: - await/async
     func request(service: T) async throws -> (Data, URLResponse) {
@@ -21,10 +27,24 @@ class Network <T: Service> {
     
     func request <U: Decodable>(service: T, model: U.Type) async throws -> U {
         let (data, _) = try await call(service.urlRequst)
+        print(data)
         return try decoder.decode(model.self, from: data)
     }
+}
+
+extension Network {
+    private func call ( _ requst: URLRequest ) async throws -> (Data, URLResponse) {
+        return try await urlSession.data(for: requst)
+    }
+}
+
+
+class NetworkGCD <T: Service> {
+    private let urlSession = URLSession.shared
+    private let decoder = JSONDecoder()
     
-    //MARK: - GCD
+    init() { }
+    
     func request(service: T, comlition: @escaping (Result<Data, Error>) -> Void) {
         call(service.urlRequst, complition: comlition)
     }
@@ -44,11 +64,7 @@ class Network <T: Service> {
     }
 }
 
-extension Network {
-    private func call ( _ requst: URLRequest ) async throws -> (Data, URLResponse) {
-        return try await urlSession.data(for: requst)
-    }
-    
+extension NetworkGCD {
     private func call (_ request: URLRequest, deliverQueue: DispatchQueue = DispatchQueue.main, complition: @escaping (Result<Data, Error>) -> Void) {
         urlSession.dataTask(with: request) { data, _, error in
             if let error {
