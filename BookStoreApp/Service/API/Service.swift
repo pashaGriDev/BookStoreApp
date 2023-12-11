@@ -13,7 +13,7 @@ enum ServiceMethod: String {
     case post = "POST"
 }
 
-enum Task {
+enum NetworkTask {
     case requstParametr(parameters: [String: Any])
     case requst
 }
@@ -21,7 +21,7 @@ enum Task {
 protocol Service {
     var baseURL: String { get }
     var path: String { get }
-    var task: Task { get }
+    var task: NetworkTask { get }
     var method: ServiceMethod { get }
 }
 
