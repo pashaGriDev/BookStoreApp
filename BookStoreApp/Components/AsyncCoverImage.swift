@@ -9,9 +9,9 @@ import SwiftUI
 
 struct AsyncCoverImage: View {
     let url: URL
-    let cornerRadius: CGFloat?
+    let cornerRadius: CGFloat
     
-    init(url: URL, cornerRadius: CGFloat? = nil) {
+    init(url: URL, cornerRadius: CGFloat = 0) {
         self.url = url
         self.cornerRadius = cornerRadius
     }
@@ -22,7 +22,7 @@ struct AsyncCoverImage: View {
                 image
                     .resizable()
                     .scaledToFill()
-                    .clipShape(.rect(cornerRadius: cornerRadius ?? 0))
+                    .clipShape(.rect(cornerRadius: cornerRadius))
             } else if phase.error != nil {
                 Image(systemName: "xmark.circle")
                     .resizable()
