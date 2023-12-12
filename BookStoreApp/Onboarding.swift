@@ -7,22 +7,45 @@
 
 import SwiftUI
 
-struct OnBoardingStep {
+struct OnBoardingStep{
     let image: String
     let title: String
     let description: String
 }
 
-private let onBoardingSteps = [
-    OnBoardingStep(image: "on1", title: "", description: "Read more and stress less with our online book shopping app. Shop from anywhere you are and discover titles that you love. Happy reading!"),
-    OnBoardingStep(image: "on2", title: "", description: "Описание 2"),
-    OnBoardingStep(image: "on3", title: "", description: "Описание 3")
-]
+extension OnBoardingStep {
+    static func getMocData() -> [OnBoardingStep] {
+        [
+            OnBoardingStep(image: "on1", title: "", description: "Read more and stress less with our online book shopping app. Shop from anywhere you are and discover titles that you love. Happy reading!"),
+            OnBoardingStep(image: "on2", title: "", description: "Описание 2"),
+            OnBoardingStep(image: "on3", title: "", description: "Описание 3")
+        ]
+    }
+}
 
-struct ContentView: View {
-    @State private var currentStep = 0
-    let logoImage = "logo"
+struct OnboardingView: View {
+    @State private var currentStep: Int = 0
     
+    private var stepCount: Int {
+        source.count
+    }
+    struct Drawing {
+        static let logoImage = "logo"
+        static let buttonSkip = "Пропустить"
+    }
+    
+    private var boomButton: String {
+        currentStep < source.count - 1
+             ? "Далее"
+             : "Начать чтение"
+    }
+    
+    
+    private let source: [OnBoardingStep] = OnBoardingStep.getMocData()
+
+    
+    
+    // MARK: - init(_:)
     init() {
         UIScrollView.appearance().bounces = false
     }
@@ -32,27 +55,28 @@ struct ContentView: View {
             VStack {
                 HStack {
                     Spacer()
+                    
                     Button(action: {
-                        self.currentStep = onBoardingSteps.count - 1
+                        self.currentStep = source.count - 1
                     }) {
-                        Text("Пропустить")
+                        Text(Drawing.buttonSkip)
                             .padding(16)
                             .foregroundColor(.gray)
                     }
                 }
                 
                 TabView(selection: $currentStep) {
-                    ForEach(0..<onBoardingSteps.count) { it in
+                    ForEach(source.indices, id: \.self) { it in
                         VStack {
-                            Image(onBoardingSteps[it].image)
+                            Image(source[it].image)
                                 .resizable()
                                 .frame(width: 350, height: 350)
                             
-                            Text(onBoardingSteps[it].title)
+                            Text(source[it].title)
                                 .font(.title)
                                 .bold()
                             
-                            Text(onBoardingSteps[it].description)
+                            Text(source[it].description)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 32)
                                 .padding(.top, 16)
@@ -63,7 +87,7 @@ struct ContentView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
                 HStack {
-                    ForEach(0..<onBoardingSteps.count) { it in
+                    ForEach(source.indices, id: \.self) { it in
                         if it == currentStep {
                             Rectangle()
                                 .frame(width: 20, height: 10)
@@ -79,13 +103,14 @@ struct ContentView: View {
                 .padding(.bottom, 24)
                 
                 Button(action: {
-                    if self.currentStep < onBoardingSteps.count - 1 {
+                    if self.currentStep < source.count - 1 {
                         self.currentStep += 1
                     } else {
                         // Get Started Logic
                     }
                 }) {
-                    Text(currentStep < onBoardingSteps.count - 1 ? "Далее" : "Начать чтение")
+                    Text(boomButton)
+                    
                         .padding(16)
                         .frame(maxWidth: .infinity)
                         .background(Color.black)
@@ -99,7 +124,7 @@ struct ContentView: View {
             // Логотип посередине экрана
             VStack {
                 Spacer()
-                Image(logoImage)
+                Image(Drawing.logoImage)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100) // Размер логотипа
@@ -112,5 +137,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+    OnboardingView()
 }
