@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct MainTabView: View {
     @State private var selectedTab: Tab = .home
 
     var body: some View {
@@ -31,5 +31,5 @@ struct TabView: View {
 }
 
 #Preview {
-    TabView()
+    MainTabView()
 }
