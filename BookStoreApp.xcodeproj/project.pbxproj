@@ -89,7 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				101C394A2B1CA55D00E0B7C4 /* BookStoreAppApp.swift */,
-				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
 				FA7AB56D2B24D0D100CC23CB /* MockBook.swift */,
 				10D7D2742B24B1DD00DBE1C9 /* Components */,
 				12A9ECDE2B25B42D005BF0BA /* View */,
@@ -150,6 +149,7 @@
 		12A9ECD92B2252E5005BF0BA /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				101C394C2B1CA55D00E0B7C4 /* ContentView.swift */,
 				12A9ECDA2B225300005BF0BA /* MainViewModel.swift */,
 			);
 			path = Main;
