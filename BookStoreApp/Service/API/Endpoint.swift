@@ -33,11 +33,11 @@ extension Endpoint: Service {
     var task: NetworkTask {
         switch self {
         case let .search(q, limit):
-            return .requstParametr(parameters: ["q": q, "limit": limit])
+            return .requestParameter(parameters: ["q": q, "limit": limit])
         case .recent:
-            return .requst
+            return .request
         case .subject(_):
-            return .requst
+            return .request
         }
     }
     
