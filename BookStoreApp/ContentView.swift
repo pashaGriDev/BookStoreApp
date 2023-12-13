@@ -14,13 +14,13 @@ struct ContentView: View {
         VStack {
             switch selectedTab {
             case .home:
-                Text("HomeView")
+                MainView()
             case .categories:
                 Text("CategoriesView")
             case .likes:
-                Text("LikesView")
+                FavoriteBooksView(books: [MockBook.getBook()])
             case .account:
-                Text("AccountView")
+                AccountView()
             }
             
             Spacer()
