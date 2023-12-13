@@ -7,48 +7,14 @@
 
 import SwiftUI
 
-struct OnBoardingStep{
-    let image: String
-    let title: String
-    let description: String
-}
-
-extension OnBoardingStep {
-    static func getMocData() -> [OnBoardingStep] {
-        [
-            OnBoardingStep(image: "on1", title: "", description: "Read more and stress less with our online book shopping app. Shop from anywhere you are and discover titles that you love. Happy reading!"),
-            OnBoardingStep(image: "on2", title: "", description: "Описание 2"),
-            OnBoardingStep(image: "on3", title: "", description: "Описание 3")
-        ]
-    }
-}
-
 struct OnboardingView: View {
-    @State private var currentStep: Int = 0
-    
-    private var stepCount: Int {
-        source.count
-    }
     struct Drawing {
         static let logoImage = "logo"
         static let buttonSkip = "Пропустить"
     }
     
-    private var boomButton: String {
-        currentStep < source.count - 1
-             ? "Далее"
-             : "Начать чтение"
-    }
-    
-    
-    private let source: [OnBoardingStep] = OnBoardingStep.getMocData()
-
-    
-    
-    // MARK: - init(_:)
-    init() {
-        UIScrollView.appearance().bounces = false
-    }
+    @Binding var isOnboarding: Bool
+    @ObservedObject var vm = OnboardingViewModel()
     
     var body: some View {
         ZStack {
@@ -57,7 +23,8 @@ struct OnboardingView: View {
                     Spacer()
                     
                     Button(action: {
-                        self.currentStep = source.count - 1
+                        vm.skipHandler()
+                        isOnboarding.toggle()
                     }) {
                         Text(Drawing.buttonSkip)
                             .padding(16)
@@ -65,18 +32,18 @@ struct OnboardingView: View {
                     }
                 }
                 
-                TabView(selection: $currentStep) {
-                    ForEach(source.indices, id: \.self) { it in
+                TabView(selection: $vm.currentStep) {
+                    ForEach(vm.source.indices, id: \.self) { it in
                         VStack {
-                            Image(source[it].image)
+                            Image(vm.source[it].image)
                                 .resizable()
                                 .frame(width: 350, height: 350)
                             
-                            Text(source[it].title)
+                            Text(vm.source[it].title)
                                 .font(.title)
                                 .bold()
                             
-                            Text(source[it].description)
+                            Text(vm.source[it].description)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal, 32)
                                 .padding(.top, 16)
@@ -87,8 +54,8 @@ struct OnboardingView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
                 HStack {
-                    ForEach(source.indices, id: \.self) { it in
-                        if it == currentStep {
+                    ForEach(vm.source.indices, id: \.self) { it in
+                        if it == vm.currentStep {
                             Rectangle()
                                 .frame(width: 20, height: 10)
                                 .cornerRadius(10)
@@ -102,15 +69,12 @@ struct OnboardingView: View {
                 }
                 .padding(.bottom, 24)
                 
-                Button(action: {
-                    if self.currentStep < source.count - 1 {
-                        self.currentStep += 1
-                    } else {
-                        // Get Started Logic
+                Button {
+                    if vm.stepHandler() {
+                        isOnboarding.toggle()
                     }
-                }) {
-                    Text(boomButton)
-                    
+                } label: {
+                    Text(vm.bottomButtonTitle)
                         .padding(16)
                         .frame(maxWidth: .infinity)
                         .background(Color.black)
@@ -133,9 +97,17 @@ struct OnboardingView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+    
+    // MARK: - init(_:)
+    init(
+        _ isOnboarding: Binding<Bool>
+    ) {
+        _isOnboarding = isOnboarding
+        UIScrollView.appearance().bounces = false
+    }
 }
 
 
 #Preview {
-    OnboardingView()
+    OnboardingView(.constant(true))
 }
