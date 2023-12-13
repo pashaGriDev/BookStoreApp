@@ -20,14 +20,13 @@ struct CategoryView: View {
                 VStack {
                     SearchBarView(searchText: $searchText, sortIsActive: $sortIsActive)
                         .padding(.top)
-                        
                     HStack {
                         Text("Categories")
                             .font(.system(size: 25, weight: .regular))
                         Spacer()
                     }
                     .padding()
-                    CategoriesRowView(categories: viewModel.MockCategories, sort: sortIsActive)
+                    CategoriesRowView(categories: searchText.isEmpty ? viewModel.MockCategories : viewModel.MockCategories.filter({$0.contains(searchText.uppercased())}), sort: sortIsActive)
                 }
             }
         }

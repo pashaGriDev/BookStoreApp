@@ -27,19 +27,19 @@ struct CategoriesRowView: View {
     }
 }
 
-struct CategoryItem: View{
+struct CategoryItem: View {
     var item: String
     
-    var body: some View{
+    var body: some View {
         NavigationLink(destination: ContentView()) {
             Text(item)
                 .clipShape(Rectangle())
-                .frame(minWidth: 100, maxWidth: .infinity, minHeight: 100)
+                .frame(minWidth: 150, maxWidth: .infinity, minHeight: 120)
                 .background(Image("category_\(Int.random(in: 1...4))"))
                 .foregroundColor(.white)
                 .font(.system(size: 20, weight: .semibold))
                 .cornerRadius(5)
-                .padding()
+                .padding(5)
         }
     }
 }

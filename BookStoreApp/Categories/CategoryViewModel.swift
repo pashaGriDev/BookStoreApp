@@ -11,11 +11,12 @@ class CategoryViewModel: ObservableObject {
     
     var service = Network<Endpoint>()
     
-    var MockCategories = ["Non-fiction", "Classics",
+    var MockCategories = ["ООО", "Classics",
                       "Fantasy", "Young Adult",
                       "Crime", "Horror",
                       "Sci-fi", "Drama",
-                      "Folk"]
+                          "Folk"]
+    
     
     func getData() {
         Task {

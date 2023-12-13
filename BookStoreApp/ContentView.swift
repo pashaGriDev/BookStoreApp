@@ -16,7 +16,7 @@ struct ContentView: View {
             case .home:
                 MainView()
             case .categories:
-                Text("CategoriesView")
+                CategoryView()
             case .likes:
                 FavoriteBooksView(books: [MockBook.getBook()])
             case .account:
