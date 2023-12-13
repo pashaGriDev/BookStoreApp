@@ -19,16 +19,12 @@ enum Tab: CaseIterable {
         }
     }
     
-    var icon: Image {
+    var icon: String {
         switch self {
-        case .home:
-            return Image(systemName: "house.fill")
-        case .categories:
-            return Image(systemName: "square.grid.2x2.fill")
-        case .likes:
-            return Image(systemName: "heart.fill")
-        case .account:
-            return Image(systemName: "person.fill")
+        case .home:  "house.fill"
+        case .categories: "square.grid.2x2.fill"
+        case .likes: "heart.fill"
+        case .account: "person.fill"
         }
     }
 }
@@ -47,8 +43,8 @@ struct TabBarView: View {
                     
                     Button(action: { selectedTab = tab }) {
                         VStack {
-                            tab.icon
-                                .font(.title)
+                            Image(systemName: tab.icon)
+                                .font(.title2)
                                 .foregroundStyle(
                                     selectedTab == tab
                                         ? .white
