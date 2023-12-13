@@ -14,8 +14,8 @@ enum ServiceMethod: String {
 }
 
 enum NetworkTask {
-    case requstParametr(parameters: [String: Any])
-    case requst
+    case requestParameter(parameters: [String: Any])
+    case request
 }
 
 protocol Service {
@@ -26,7 +26,7 @@ protocol Service {
 }
 
 extension Service {
-    public var urlRequst: URLRequest {
+    public var urlRequest: URLRequest {
         guard let url = url else { fatalError("URL not be open") }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
@@ -37,18 +37,18 @@ extension Service {
     private var url: URL? {
         var urlComponents = URLComponents(string: baseURL)
         urlComponents?.path = path
-        if let paramerItem {
-            urlComponents?.queryItems = paramerItem
+        if let queryItems {
+            urlComponents?.queryItems = queryItems
         }
         return urlComponents?.url
     }
     
-    private var paramerItem: [URLQueryItem]? {
+    private var queryItems: [URLQueryItem]? {
         var items = [URLQueryItem]()
         switch task {
-        case .requstParametr(let parameters):
+        case .requestParameter(let parameters):
             items = parameters.map({ URLQueryItem(name: $0, value: $1 as? String) })
-        case .requst:
+        case .request:
             items = [URLQueryItem]()
         }
         return items
