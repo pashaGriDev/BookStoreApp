@@ -14,15 +14,15 @@ struct FavoriteBooksView: View {
         NavigationView {
             ScrollView {
                 ForEach(books) { book in
-                    BookсardRowView(book: book)
+                    NavigationLink {
+                        DetailView(book: book)
+                    } label: {
+                        BookсardRowView(book: book)
+                    }
                 }
             }
             .navigationTitle("Favorite books")
             .navigationBarTitleDisplayMode(.inline)
-            // back to DetailView
-//            .navigationDestination(for: MockBook.self) { selectedBook in
-//                DetailView(book: selectedBook)
-//            }
         }
     }
 }

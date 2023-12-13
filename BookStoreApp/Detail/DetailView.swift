@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
+    @Environment(\.colorScheme) var colorScheme
     let book: MockBook
     @State private var isFavourite = false
     
@@ -40,8 +41,8 @@ struct DetailView: View {
                         
                         ButtonView(
                             title: "Read",
-                            background: .black,
-                            foreground: .white,
+                            background: .primary,
+                            foreground: colorScheme == .dark ? .black : .white,
                             action: {}
                         )
                     }
@@ -79,7 +80,7 @@ struct DetailView: View {
                     // another action..
                 } label: {
                     Image(systemName: isFavourite ? "heart.fill" : "heart")
-                        .foregroundStyle(.black)
+                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                 }
             }
         }
