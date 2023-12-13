@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookсardRowView: View {
+    @Environment(\.colorScheme) var colorScheme
     let book: MockBook
     
     var body: some View {
@@ -46,7 +47,11 @@ struct BookсardRowView: View {
                 Spacer()
             }
         }
-        .background(.black)
+        .background(
+            colorScheme == .dark
+                ? Color(UIColor.secondarySystemBackground)
+                : .black
+        )
         .clipShape(.rect(cornerRadius: 8))
         .shadow(radius: 1)
         .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
