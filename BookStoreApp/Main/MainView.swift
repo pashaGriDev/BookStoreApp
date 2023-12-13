@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     @StateObject var viewModel = MainViewModel()
     var body: some View {
         VStack {
@@ -102,5 +102,5 @@ struct BookCellView: View {
 }
 
 #Preview {
-    ContentView()
+    MainView()
 }
