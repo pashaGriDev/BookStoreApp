@@ -38,33 +38,33 @@ struct AccountView: View {
             Spacer()
             
             if isEditing {
-                            Button("Сохранить") {
-                                UserDefaults.standard.set(name, forKey: "userName")
-                                UserDefaults.standard.set(surname, forKey: "userSurname")
-                                isEditing = false
-                            }
-                            .padding()
-                        } else {
-                            Button("Изменить данные") {
-                                isEditing = true
-                            }
-                            .padding()
-                        }
-                        
-                        Button("Выйти из аккаунта") {
-                            UserDefaults.standard.removeObject(forKey: "userName")
-                            UserDefaults.standard.removeObject(forKey: "userSurname")
-                            name = ""
-                            surname = ""
-                            isEditing = true
-                        }
-                        .foregroundColor(.red)
-                        .padding(.bottom, 50)
-                        
-                    }
-                    .navigationBarTitle("Аккаунт", displayMode: .inline)
+                Button("Сохранить") {
+                    UserDefaults.standard.set(name, forKey: "userName")
+                    UserDefaults.standard.set(surname, forKey: "userSurname")
+                    isEditing = false
                 }
+                .padding()
+            } else {
+                Button("Изменить данные") {
+                    isEditing = true
+                }
+                .padding()
             }
+            
+            Button("Выйти из аккаунта") {
+                UserDefaults.standard.removeObject(forKey: "userName")
+                UserDefaults.standard.removeObject(forKey: "userSurname")
+                name = ""
+                surname = ""
+                isEditing = true
+            }
+            .foregroundColor(.red)
+            .padding(.bottom, 50)
+            
+        }
+        .navigationBarTitle("Аккаунт", displayMode: .inline)
+    }
+}
 
 #Preview {
     AccountView()
