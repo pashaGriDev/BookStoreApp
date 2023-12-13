@@ -98,10 +98,9 @@
 		101C39492B1CA55D00E0B7C4 /* BookStoreApp */ = {
 			isa = PBXGroup;
 			children = (
-				104325122B29B22400D037EB /* Onboarding */,
 				101C394A2B1CA55D00E0B7C4 /* BookStoreAppApp.swift */,
 				1043250F2B29B1A100D037EB /* ContentView.swift */,
-				FA7AB56D2B24D0D100CC23CB /* MockBook.swift */,
+				104325122B29B22400D037EB /* Onboarding */,
 				104325112B29B1CB00D037EB /* Account */,
 				10D7D2742B24B1DD00DBE1C9 /* Components */,
 				10D7D2752B24B1F900DBE1C9 /* Favorite */,
@@ -109,6 +108,7 @@
 				12A9ECD92B2252E5005BF0BA /* Main */,
 				12CEB5AC2B1FA97C0061167F /* Service */,
 				FAEE247E2B1E97230024C97E /* MainTabView.swift */,
+				FA7AB56D2B24D0D100CC23CB /* MockBook.swift */,
 				FA6242A82B1F65CF00953394 /* TabBarView.swift */,
 				101C394E2B1CA56000E0B7C4 /* Assets.xcassets */,
 				101C39502B1CA56000E0B7C4 /* Preview Content */,

@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: Tab = .home
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            switch selectedTab {
+            case .home:
+                Text("HomeView")
+            case .categories:
+                Text("CategoriesView")
+            case .likes:
+                Text("LikesView")
+            case .account:
+                Text("AccountView")
+            }
+            
+            Spacer()
+            
+            TabBarView(selectedTab: $selectedTab)
+        }
     }
 }
 

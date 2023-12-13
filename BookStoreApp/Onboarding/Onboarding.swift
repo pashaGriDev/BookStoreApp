@@ -13,12 +13,8 @@ struct OnboardingView: View {
         static let buttonSkip = "Пропустить"
     }
     
+    @Binding var isOnboarding: Bool
     @ObservedObject var vm = OnboardingViewModel()
-
-    // MARK: - init(_:)
-    init() {
-        UIScrollView.appearance().bounces = false
-    }
     
     var body: some View {
         ZStack {
@@ -28,6 +24,7 @@ struct OnboardingView: View {
                     
                     Button(action: {
                         vm.skipHandler()
+                        isOnboarding.toggle()
                     }) {
                         Text(Drawing.buttonSkip)
                             .padding(16)
@@ -72,11 +69,12 @@ struct OnboardingView: View {
                 }
                 .padding(.bottom, 24)
                 
-                Button(action: {
-                    vm.stepHandler()
-                }) {
+                Button {
+                    if vm.stepHandler() {
+                        isOnboarding.toggle()
+                    }
+                } label: {
                     Text(vm.bottomButtonTitle)
-                    
                         .padding(16)
                         .frame(maxWidth: .infinity)
                         .background(Color.black)
@@ -99,9 +97,17 @@ struct OnboardingView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
+    
+    // MARK: - init(_:)
+    init(
+        _ isOnboarding: Binding<Bool>
+    ) {
+        _isOnboarding = isOnboarding
+        UIScrollView.appearance().bounces = false
+    }
 }
 
 
 #Preview {
-    OnboardingView()
+    OnboardingView(.constant(true))
 }

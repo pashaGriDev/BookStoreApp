@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct BookStoreAppApp: App {
+    @AppStorage("isOnboarding") var isOnboarding = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isOnboarding {
+                ContentView()
+            } else {
+                OnboardingView($isOnboarding)
+            }
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class OnboardingViewModel: ObservableObject {
     @Published var source = OnboardingStep.createSteps()
@@ -21,13 +22,13 @@ class OnboardingViewModel: ObservableObject {
         currentStep = source.count - 1
     }
     
-    func stepHandler() {
+    func stepHandler() -> Bool {
         if currentStep < source.count - 1 {
             self.currentStep += 1
+            return false
         } else {
-            // Get Started Logic
+            return true
         }
     }
-    
 }
 
