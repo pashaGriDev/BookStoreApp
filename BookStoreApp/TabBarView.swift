@@ -34,9 +34,6 @@ struct TabBarView: View {
     @Binding var selectedTab: Tab
     
     var body: some View {
-        VStack {
-            Spacer()
-            
             HStack {
                 ForEach(Tab.allCases, id: \.self) { tab in
                     Spacer()
@@ -64,9 +61,8 @@ struct TabBarView: View {
                     Spacer()
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: 70)
+            .frame(maxHeight: 70)
             .background(.ultraThinMaterial)
-        }
     }
 }
 
