@@ -21,14 +21,14 @@ struct BookCellView: View {
                     Spacer()
                     HStack(){
                         VStack (alignment: .leading, spacing: 8){
-                            Text(item.title)
+                            Text(item.subject.first ?? "Unknown")
                                 .font(.system(size: 15))
                                 .foregroundStyle(.white)
-                            Text("Text111111111")
+                            Text(item.title)
                                 .lineLimit(2)
                                 .font(.system(size: 21).bold())
                                 .foregroundStyle(.white)
-                            Text("Text")
+                            Text(item.authors.first?.name ?? "Unknown authors" )
                                 .font(.system(size: 15))
                                 .foregroundStyle(.white)
                         }
