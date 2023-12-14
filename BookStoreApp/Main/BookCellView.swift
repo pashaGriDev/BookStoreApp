@@ -46,6 +46,6 @@ struct BookCellView: View {
     }
 }
 
-//#Preview {
-//    BookCellView()
-//}
+#Preview {
+    BookCellView(item: mockWork)
+}
