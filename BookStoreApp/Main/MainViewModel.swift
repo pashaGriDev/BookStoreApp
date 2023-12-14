@@ -11,14 +11,17 @@ import Combine
 
 class MainViewModel: ObservableObject {
     
+    @Published var items: [WorksModel] = []
     var service = Network<Endpoint>()
     
-    func getData() {
-        Task {
+    func getData() async {
 //            let test = try await service.request(service: .recent, model: [RecentModel].self)
 //            let search = try await service.request(service: .search("Happy Reading", "10"), model: SearchModel.self)
-            let subj = try await service.request(service: .subject(.love), model: SubjectsModel.self)
-            print(subj)
+        let subj = try? await service.request(service: .subject(.love), model: SubjectsModel.self)
+            
+        await MainActor.run {
+            items = subj?.works ?? []
         }
+        print(items.count)
     }
 }
