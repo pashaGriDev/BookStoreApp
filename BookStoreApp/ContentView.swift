@@ -11,22 +11,26 @@ struct ContentView: View {
     @State private var selectedTab: Tab = .home
     
     var body: some View {
-        VStack {
-            switch selectedTab {
-            case .home:
-                MainView()
-            case .categories:
-                Text("CategoriesView")
-            case .likes:
-                FavoriteBooksView(books: [MockBook.getBook()])
-            case .account:
-                AccountView()
+        ZStack {
+            VStack {
+                switch selectedTab {
+                case .home:
+                    MainView()
+                case .categories:
+                    BookCategoriesView()
+                case .likes:
+                    FavoriteBooksView(books: [MockBook.getBook()])
+                case .account:
+                    AccountView()
+                }
             }
             
-            Spacer()
-            
-            TabBarView(selectedTab: $selectedTab)
+            VStack {
+                Spacer()
+                TabBarView(selectedTab: $selectedTab)
+            }
         }
+        .ignoresSafeArea(.keyboard)
     }
 }
 
