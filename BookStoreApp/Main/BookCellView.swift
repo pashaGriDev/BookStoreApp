@@ -11,38 +11,42 @@ struct BookCellView: View {
     let item: WorksModel
     
     var body: some View {
-        VStack {
-            ZStack{
-                Image("category_4")
-                    .resizable()
-                    .padding(.horizontal, 44)
-                    .padding(.vertical, 11)
-                VStack{
-                    Spacer()
-                    HStack(){
-                        VStack (alignment: .leading, spacing: 8){
-                            Text(item.title)
-                                .font(.system(size: 15))
-                                .foregroundStyle(.white)
-                            Text("Text111111111")
-                                .lineLimit(2)
-                                .font(.system(size: 21).bold())
-                                .foregroundStyle(.white)
-                            Text("Text")
-                                .font(.system(size: 15))
-                                .foregroundStyle(.white)
-                        }
-                        .frame(width: 180)
-                        .padding(.vertical, 12)
-                        .background(.black)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
+        ZStack(alignment: .bottomLeading) {
+            // тут будет кавер самой книги, это временное решение
+            Image("category_\(Int.random(in: 1...4))")
+                .resizable()
+                .scaledToFill()
+                .frame(width: 176, height: 230) // magic numbers
+                .clipShape(.rect(cornerRadius: 8))
+                .shadow(radius: 2)
+            
+            VStack(alignment: .leading) {
+                Text("Category")
+                    .font(.caption)
+                    .foregroundColor(.white)
+                
+                Text(item.title)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 5)
+                
+                Text("Author name")
+                    .font(.caption)
+                    .foregroundColor(.white)
             }
+            .padding()
+            .frame(width: 176, alignment: .leading)
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [.black.opacity(0.9), .black.opacity(0)]),
+                    startPoint: .bottom,
+                    endPoint: .top
+                )
+            )
+            .clipShape(.rect(cornerRadius: 8))
         }
-        .frame(width: 180)
-        .background(.gray)
-        .cornerRadius(8)
+        .padding(.horizontal, 5)
     }
 }
 

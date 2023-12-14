@@ -40,6 +40,8 @@
 		FA7AB56E2B24D0D100CC23CB /* MockBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB56D2B24D0D100CC23CB /* MockBook.swift */; };
 		FA7AB5702B24D25000CC23CB /* AsyncCoverImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */; };
 		FA7AB5722B24DE4200CC23CB /* BookсardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */; };
+		FAAC47FA2B2B7A27002B7136 /* HeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC47F92B2B7A27002B7136 /* HeadlineView.swift */; };
+		FAAC47FC2B2B7EF8002B7136 /* SwitchButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC47FB2B2B7EF8002B7136 /* SwitchButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		FA7AB56D2B24D0D100CC23CB /* MockBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBook.swift; sourceTree = "<group>"; };
 		FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCoverImage.swift; sourceTree = "<group>"; };
 		FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BookсardRowView.swift"; sourceTree = "<group>"; };
+		FAAC47F92B2B7A27002B7136 /* HeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineView.swift; sourceTree = "<group>"; };
+		FAAC47FB2B2B7EF8002B7136 /* SwitchButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,8 @@
 				FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */,
 				FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */,
 				FA7AB5682B24AE8000CC23CB /* ButtonView.swift */,
+				FAAC47F92B2B7A27002B7136 /* HeadlineView.swift */,
+				FAAC47FB2B2B7EF8002B7136 /* SwitchButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -311,11 +317,13 @@
 				101C394D2B1CA55D00E0B7C4 /* MainView.swift in Sources */,
 				12A9ECD82B210FA5005BF0BA /* SearchDataModel.swift in Sources */,
 				104325102B29B1A100D037EB /* ContentView.swift in Sources */,
+				FAAC47FC2B2B7EF8002B7136 /* SwitchButtonView.swift in Sources */,
 				104325182B29EA2900D037EB /* NetworkGCD.swift in Sources */,
 				B392B0A82B28A3BA00B8017F /* Onboarding.swift in Sources */,
 				FA7AB56E2B24D0D100CC23CB /* MockBook.swift in Sources */,
 				FA7AB56B2B24AE8000CC23CB /* ButtonView.swift in Sources */,
 				12A9ECDD2B2253DE005BF0BA /* RecentModel.swift in Sources */,
+				FAAC47FA2B2B7A27002B7136 /* HeadlineView.swift in Sources */,
 				3B17C3492B2A3ADD00DDF70C /* CategoriesView.swift in Sources */,
 				FA7AB5722B24DE4200CC23CB /* BookсardRowView.swift in Sources */,
 				FA7AB5702B24D25000CC23CB /* AsyncCoverImage.swift in Sources */,

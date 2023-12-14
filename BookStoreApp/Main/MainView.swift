@@ -9,61 +9,53 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var vm = MainViewModel()
+    @State private var searchText = ""
+    @State private var sortIsActive = false
     
     var body: some View {
-        VStack {
-            HStack() {
-                Text("Top Books")
-                Spacer()
-                Button("see more") {
-                    
-                }
-                .foregroundStyle(.gray)
-                .padding(.trailing, 20)
-            }
-            .padding(.leading, 20)
-            
-            HStack {
-                Button("This weak"){
-                    
-                }
-                .padding(.all, 8)
-                .background(.black)
-                .foregroundStyle(.white)
-                Spacer()
-            }
-            .padding(.leading, 20)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack (spacing: 16){
-                    ForEach(vm.items.indices, id: \.self) { index in
-                        BookCellView(item: vm.items[index])
-                            .padding(.vertical)
-                    }
-                }
-            }
-            .padding(.leading, 20)
-            
-            HStack() {
-                Text("Top Books")
-                Spacer()
-                Button("see more") {
-                    
-                }
-                .foregroundStyle(.gray)
-                .padding(.trailing, 20)
-            }
-            .padding(.leading, 20)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: 16) {
-                    ForEach(vm.items.indices, id: \.self) { index in
-                        BookCellView(item: vm.items[index])
-                    }
-                }
-            }
-            .padding(.leading, 20)
+        SearchBarView(searchText: $searchText, sortIsActive: $sortIsActive)
+            .padding(.bottom)
+        
+        HeadlineView(headline: "Top Books", buttonTitle: "see more", action: {})
+        
+        HStack(spacing: 16) {
+            SwitchButtonView(title: "This Week")
+            SwitchButtonView(title: "This Month")
+            SwitchButtonView(title: "This Year")
+            Spacer()
         }
+        .padding([.leading, .bottom])
+        
+        ScrollView {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(vm.items.indices, id: \.self) { index in
+                        NavigationLink {
+                            //
+                        } label: {
+                            BookCellView(item: vm.items[index])
+                        }
+                    }
+                }
+            }
+            
+            Divider()
+            
+            HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(vm.items.indices, id: \.self) { index in
+                        NavigationLink {
+                            //
+                        } label: {
+                            BookCellView(item: vm.items[index])
+                        }
+                    }
+                }
+            }
+        }
+        
         .task {
             await vm.getData()
         }
