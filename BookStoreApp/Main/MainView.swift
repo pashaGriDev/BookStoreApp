@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var viewModel = MainViewModel()
+    @StateObject var vm = MainViewModel()
+    
     var body: some View {
         VStack {
             HStack() {
@@ -35,13 +36,14 @@ struct MainView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack (spacing: 16){
-                    ForEach(0..<10) { _ in
-                        BookCellView()
+                    ForEach(vm.items.indices, id: \.self) { index in
+                        BookCellView(item: vm.items[index])
                             .padding(.vertical)
                     }
                 }
             }
             .padding(.leading, 20)
+            
             HStack() {
                 Text("Top Books")
                 Spacer()
@@ -52,52 +54,19 @@ struct MainView: View {
                 .padding(.trailing, 20)
             }
             .padding(.leading, 20)
+            
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 16) {
-                    ForEach(0..<10) { _ in
-                        BookCellView()
+                    ForEach(vm.items.indices, id: \.self) { index in
+                        BookCellView(item: vm.items[index])
                     }
                 }
             }
             .padding(.leading, 20)
         }
-    }
-}
-
-struct BookCellView: View {
-    var body: some View {
-        VStack {
-            ZStack{
-                Image("category_4")
-                    .resizable()
-                    .padding(.horizontal, 44)
-                    .padding(.vertical, 11)
-                VStack{
-                    Spacer()
-                    HStack(){
-                        VStack (alignment: .leading, spacing: 8){
-                            Text("Text")
-                                .font(.system(size: 15))
-                                .foregroundStyle(.white)
-                            Text("Text111111111")
-                                .lineLimit(2)
-                                .font(.system(size: 21).bold())
-                                .foregroundStyle(.white)
-                            Text("Text")
-                                .font(.system(size: 15))
-                                .foregroundStyle(.white)
-                        }
-                        .frame(width: 180)
-                        .padding(.vertical, 12)
-                        .background(.black)
-                    }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
+        .task {
+            await vm.getData()
         }
-        .frame(width: 180)
-        .background(.gray)
-        .cornerRadius(8)
     }
 }
 
