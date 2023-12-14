@@ -61,6 +61,7 @@ struct AccountView: View {
             .foregroundColor(.red)
             .padding(.bottom, 50)
             
+            Spacer()
         }
         .navigationBarTitle("Аккаунт", displayMode: .inline)
     }
