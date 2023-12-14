@@ -24,6 +24,7 @@ struct DetailView: View {
     let id: String
     let author: String
     var item: DetailBookModel = mockDetailBook
+    let book: MockBook = .getBook()
     @State private var isFavourite = false
     
     var body: some View {
@@ -99,7 +100,7 @@ struct DetailView: View {
         }
     }
 }
-
-#Preview {
-    DetailView(book: MockBook.getBook())
-}
+//
+//#Preview {
+//    DetailView(book: MockBook.getBook())
+//}

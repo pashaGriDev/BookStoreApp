@@ -12,6 +12,8 @@ enum Endpoint {
     case search(String, String?)
     case recent
     case subject(SubjectCategory)
+    case getDetailByKey(String)
+    case getRatingByKey(String)
 }
 
 extension Endpoint: Service {
@@ -27,6 +29,10 @@ extension Endpoint: Service {
             return "/recentchanges.json"
         case let .subject(category):
             return "/subjects/\(category.rawValue).json"
+        case let .getDetailByKey(id):
+            return "\(id).json"
+        case let .getRatingByKey(id):
+            return "\(id)/ratings.json"
         }
     }
     
@@ -37,6 +43,10 @@ extension Endpoint: Service {
         case .recent:
             return .request
         case .subject(_):
+            return .request
+        case .getDetailByKey(_):
+            return .request
+        case .getRatingByKey(_):
             return .request
         }
     }
