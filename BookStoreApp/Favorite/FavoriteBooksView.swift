@@ -15,7 +15,7 @@ struct FavoriteBooksView: View {
             ScrollView {
                 ForEach(books) { book in
                     NavigationLink {
-                        DetailView(book: book)
+//                        DetailView(book: book)
                     } label: {
                         BookсardRowView(book: book)
                     }

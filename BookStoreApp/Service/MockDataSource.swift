@@ -7,22 +7,24 @@
 
 import Foundation
 
-let mockWork: WorksModel = Bundle.main.load("mokWork.json")
+let mockWork: WorksModel = Bundle.main.load("mockWork.json")
+let mockDocs: DocsModel = Bundle.main.load("mockDocs.json")
+let mockDetailBook: DetailBookModel = Bundle.main.load("mockDetailBook.json")
 
 extension Bundle {
     func load<T: Codable>(_ file: String) -> T {
         guard let url = self.url(forResource: file, withExtension: nil) else {
-            fatalError("Failed to locate \(file) in bundle")
+            assert(false, "Failed to locate \(file) in bundle")
         }
         
         guard let data = try? Data(contentsOf: url) else {
-            fatalError("Failed to load \(file) from bundle")
+            assert(false, "Failed to load \(file) from bundle")
         }
         
         let decoder = JSONDecoder()
         
         guard let loaded = try? decoder.decode(T.self, from: data) else {
-            fatalError("Failed to decode \(file) from bundle")
+            assert(false, "Failed to decode \(file) from bundle")
         }
         
         return loaded

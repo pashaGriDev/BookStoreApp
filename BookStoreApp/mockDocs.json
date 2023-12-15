@@ -1,0 +1,51 @@
+{
+            "key": "/works/OL24660003W",
+            "type": "work",
+            "seed": [
+                "/books/OL32727538M",
+                "/works/OL24660003W",
+                "/authors/OL3369325A"
+            ],
+            "title": "Happy Birthday,Toad",
+            "title_suggest": "Happy Birthday,Toad",
+            "title_sort": "Happy Birthday,Toad",
+            "edition_count": 1,
+            "edition_key": [
+                "OL32727538M"
+            ],
+            "publish_date": [
+                "Jun 11, 2009"
+            ],
+            "publish_year": [
+                2009
+            ],
+            "first_publish_year": 2009,
+            "number_of_pages_median": 12,
+            "isbn": [
+                "0547087055",
+                "9780547087054"
+            ],
+            "last_modified_i": 1625363619,
+            "ebook_count_i": 0,
+            "ebook_access": "no_ebook",
+            "has_fulltext": false,
+            "public_scan_b": false,
+            "cover_edition_key": "OL32727538M",
+            "cover_i": 11354350,
+            "publisher": [
+                "HOUGHTON MIFFLIN"
+            ],
+            "author_key": [
+                "OL3369325A"
+            ],
+            "author_name": [
+                "Reading"
+            ],
+            "publisher_facet": [
+                "HOUGHTON MIFFLIN"
+            ],
+            "_version_": 1767916222819598336,
+            "author_facet": [
+                "OL3369325A Reading"
+            ]
+        }
