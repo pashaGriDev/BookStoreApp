@@ -1,0 +1,263 @@
+{
+    "title": "Wuthering Heights",
+    "key": "/works/OL21177W",
+    "authors": [
+        {
+            "author": {
+                "key": "/authors/OL24529A"
+            },
+            "type": {
+                "key": "/type/author_role"
+            }
+        }
+    ],
+    "type": {
+        "key": "/type/work"
+    },
+    "description": "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction.",
+    "covers": [
+        12818862,
+        12775465,
+        11469269,
+        12943256,
+        12912660,
+        12334782,
+        13517219,
+        11666218,
+        12332879,
+        12339565,
+        12348268,
+        13016279,
+        13455603,
+        13500142,
+        13502207,
+        11519318,
+        12083367,
+        -1,
+        12862422,
+        13578658,
+        13720107,
+        13769260,
+        12331538,
+        13498148,
+        13671971,
+        13674223,
+        14083394,
+        14083395,
+        12790201,
+        11241106,
+        12393400,
+        12120618,
+        12121397,
+        12203662
+    ],
+    "first_sentence": {
+        "type": "/type/text",
+        "value": "1801.-I have just returned from a visit to my landlord-the solitary neighbour that I shall be troubled with."
+    },
+    "first_publish_date": "April 1, 2000",
+    "links": [
+        {
+            "title": "Wuthering Heights - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Wuthering_Heights",
+            "type": {
+                "key": "/type/link"
+            }
+        },
+        {
+            "title": "Wuthering Heights at a glance (cliffsnotes.com)",
+            "url": "https://www.cliffsnotes.com/literature/w/wuthering-heights/wuthering-heights-at-a-glance",
+            "type": {
+                "key": "/type/link"
+            }
+        },
+        {
+            "title": "The 100 best novels: No 13 – Wuthering Heights by Emily Brontë (1847) (theguardian.com)",
+            "url": "https://www.theguardian.com/books/2013/dec/16/emily-bronte-wuthering-heights-100-best",
+            "type": {
+                "key": "/type/link"
+            }
+        },
+        {
+            "title": "The reader's guide to Emily Bronte's classic 'Wuthering Heights' (wuthering-heights.co.uk)",
+            "url": "https://www.wuthering-heights.co.uk/",
+            "type": {
+                "key": "/type/link"
+            }
+        },
+        {
+            "title": "thegreatestbooks.org/items/108",
+            "url": "https://thegreatestbooks.org/items/108",
+            "type": {
+                "key": "/type/link"
+            }
+        }
+    ],
+    "subject_places": [
+        "England",
+        "Yorkshire",
+        "Northern England",
+        "Wuthering Heights",
+        "Thrushcross Grange",
+        "Yorkshire (England)",
+        "Inglaterra",
+        "Ying guo",
+        "Angleterre",
+        "Jin dai"
+    ],
+    "subjects": [
+        "British and irish fiction (fictional works by one author)",
+        "Children's fiction",
+        "Classic fiction",
+        "Classic Literature",
+        "Country homes",
+        "Country life",
+        "Cousins",
+        "death",
+        "Drama",
+        "English language",
+        "English language readers",
+        "English literature",
+        "Examinations",
+        "Families",
+        "family life",
+        "Fiction",
+        "Foundlings",
+        "Historical Fiction",
+        "Inheritance and succession",
+        "Interpersonal relations",
+        "Juvenile fiction",
+        "Landscape in literature",
+        "love",
+        "Man-woman relationships",
+        "Manners and customs",
+        "orphans",
+        "Psychological fiction",
+        "Reading Level-Grade 7",
+        "Reading Level-Grade 8",
+        "Reading Level-Grade 9",
+        "Reading Level-Grade 10",
+        "Reading Level-Grade 11",
+        "Reading Level-Grade 12",
+        "Rejection (Psychology)",
+        "revenge",
+        "romance",
+        "Romance fiction",
+        "romantic fiction",
+        "Rural families",
+        "slavery",
+        "Social life and customs",
+        "tragedy",
+        "Triangles (Interpersonal relations)",
+        "Young women",
+        "Fiction, general",
+        "Revenge -- Fiction",
+        "Rejection (Psychology) -- Fiction",
+        "Love stories",
+        "Domestic fiction",
+        "Yorkshire (England) -- Fiction",
+        "Foundlings -- Fiction",
+        "Rural families -- Fiction",
+        "Heathcliff (Fictitious character : Brontë) -- Fiction",
+        "Triangles (Interpersonal relations) -- Fiction",
+        "Heathcliff (fictitious character), fiction",
+        "Fiction, family life, general",
+        "Fiction, psychological",
+        "Fiction, romance, general",
+        "Man-woman relationships, fiction",
+        "England, fiction",
+        "Triangle (Relations humaines)",
+        "Romans, nouvelles",
+        "Rejet (Psychologie)",
+        "Familles rurales",
+        "Enfants trouvés",
+        "Wuthering Heights (Brontë, Emily)",
+        "Vengeance",
+        "English fiction",
+        "Triangles (Interpersonal relationships)",
+        "Yorkshire (England)",
+        "Roman anglais",
+        "Relations entre hommes et femmes",
+        "Mœurs et coutumes",
+        "Women",
+        "Femmes",
+        "Heathcliff (Fictitious character)",
+        "Catherine Earnshawm (Fictitious character)",
+        "English Gothic fiction",
+        "Adaptations",
+        "Social conditions",
+        "Interpersonal relations, fiction",
+        "Roman",
+        "Englisch",
+        "Wuthering heights (Emily Brontë)",
+        "Comics & graphic novels, romance",
+        "Love, fiction",
+        "Comic books, strips, etc.",
+        "Comics & graphic novels, literary",
+        "Literature, collections",
+        "American fiction",
+        "Foundlings in fiction",
+        "Rural families in fiction",
+        "England in fiction",
+        "Revenge in fiction",
+        "Man-woman relationships in fiction",
+        "Landscape in literature in fiction",
+        "Slavery in fiction",
+        "Reading books",
+        "Country life in fiction",
+        "Readers",
+        "Fiction in English",
+        "Orphans in fiction",
+        "Study and teaching",
+        "Love in fiction",
+        "Readers (Adult)",
+        "Study guides",
+        "Accessible book",
+        "Zhang pian xiao shuo",
+        "Heathcliff (Fictitious character : Brontë)",
+        "Social conflict"
+    ],
+    "subject_people": [
+        "Catherine Earnshaw",
+        "Cathy Linton",
+        "Edgar Linton",
+        "Heathcliff",
+        "Hindley Earnshaw",
+        "Isabella Linton",
+        "Joseph",
+        "Linton Heathcliff",
+        "Mr Lockwood",
+        "Nelly Dean",
+        "Zillah",
+        "Emily Brontë (1818-1848)"
+    ],
+    "subject_times": [
+        "1801",
+        "19th Century",
+        "Siglo XIX",
+        "Jin dai",
+        "Jindai",
+        "19e siècle",
+        "1950-",
+        "Yingguo"
+    ],
+    "excerpts": [
+        {
+            "excerpt": "1801.",
+            "comment": "first sentence",
+            "author": {
+                "key": "/people/seabelis"
+            }
+        }
+    ],
+    "latest_revision": 140,
+    "revision": 140,
+    "created": {
+        "type": "/type/datetime",
+        "value": "2009-10-08T20:21:04.556628"
+    },
+    "last_modified": {
+        "type": "/type/datetime",
+        "value": "2023-12-12T20:44:25.783829"
+    }
+}

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var vm = MainViewModel()
+    @EnvironmentObject var modelData: ModelData
+    
+//    @StateObject var vm = MainViewModel()
     @State private var searchText = ""
     @State private var sortIsActive = false
     
@@ -29,11 +31,11 @@ struct MainView: View {
         ScrollView {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(vm.items.indices, id: \.self) { index in
+                    ForEach(modelData.items.indices, id: \.self) { index in
                         NavigationLink {
                             //
                         } label: {
-                            BookCellView(item: vm.items[index])
+                            BookCellView(item: modelData.items[index])
                         }
                     }
                 }
@@ -45,23 +47,23 @@ struct MainView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach(vm.items.indices, id: \.self) { index in
+                    ForEach(modelData.items.indices, id: \.self) { index in
                         NavigationLink {
                             //
                         } label: {
-                            BookCellView(item: vm.items[index])
+                            BookCellView(item: modelData.items[index])
                         }
                     }
                 }
             }
         }
-        
         .task {
-            await vm.getData()
+            await modelData.getSubject()
         }
     }
 }
 
 #Preview {
     MainView()
+        .environmentObject(ModelData())
 }
