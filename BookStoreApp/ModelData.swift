@@ -21,9 +21,9 @@ class ModelData: ObservableObject {
 
             await MainActor.run {
                 items = subj.works
+                isLoading.toggle()
             }
             
-            isLoading.toggle()
         } catch {
             // можно обработать ошибку, например показать алерт
             print(error.localizedDescription)
