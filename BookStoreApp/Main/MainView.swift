@@ -15,50 +15,60 @@ struct MainView: View {
     @State private var sortIsActive = false
     
     var body: some View {
-        SearchBarView(searchText: $searchText, sortIsActive: $sortIsActive)
-            .padding(.bottom)
-        
-        HeadlineView(headline: "Top Books", buttonTitle: "see more", action: {})
-        
-        HStack(spacing: 16) {
-            SwitchButtonView(title: "This Week")
-            SwitchButtonView(title: "This Month")
-            SwitchButtonView(title: "This Year")
-            Spacer()
-        }
-        .padding([.leading, .bottom])
-        
-        ScrollView {
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(modelData.items.indices, id: \.self) { index in
-                        NavigationLink {
-                            //
-                        } label: {
-                            BookCellView(item: modelData.items[index])
+        NavigationView {
+            VStack {
+                SearchBarView(
+                    searchText: $searchText,
+                    sortIsActive: $sortIsActive
+                )
+                    .padding(.bottom)
+                
+                HeadlineView(headline: "Top Books",
+                             buttonTitle: "see more",
+                             action: {
+                })
+                
+                HStack(spacing: 16) {
+                    SwitchButtonView(title: "This Week")
+                    SwitchButtonView(title: "This Month")
+                    SwitchButtonView(title: "This Year")
+                    Spacer()
+                }
+                .padding([.leading, .bottom])
+                
+                ScrollView {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHStack {
+                            ForEach(modelData.items.indices, id: \.self) { index in
+                                NavigationLink {
+                                    Text("Detail view \(modelData.items[index].key)")
+                                } label: {
+                                    BookCellView(item: modelData.items[index])
+                                }
+                            }
+                        }
+                    }
+                    
+                    Divider()
+                    
+                    HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHStack {
+                            ForEach(modelData.items.indices, id: \.self) { index in
+                                NavigationLink {
+                                    Text("Detail view \(modelData.items[index].key)")
+                                } label: {
+                                    BookCellView(item: modelData.items[index])
+                                }
+                            }
                         }
                     }
                 }
             }
-            
-            Divider()
-            
-            HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(modelData.items.indices, id: \.self) { index in
-                        NavigationLink {
-                            //
-                        } label: {
-                            BookCellView(item: modelData.items[index])
-                        }
-                    }
-                }
+            .task {
+                await modelData.getSubject()
             }
-        }
-        .task {
-            await modelData.getSubject()
         }
     }
 }
