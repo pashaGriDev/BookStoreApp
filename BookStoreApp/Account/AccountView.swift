@@ -8,62 +8,48 @@
 import SwiftUI
 
 struct AccountView: View {
-    
-    @State private var name: String = UserDefaults.standard.string(forKey: "userName") ?? ""
-    @State private var surname: String = UserDefaults.standard.string(forKey: "userSurname") ?? ""
-    @State private var isEditing: Bool = false
+    @AppStorage("username") private var name = ""
+    @AppStorage("userLastname") private var lastName = ""
+    @AppStorage("avatar") private var avatar = "wizard"
+    @State private var isShowingLoginView = false
     
     var body: some View {
-        VStack {
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 120, height: 120)
-                .padding(.top, 50)
-            
-            if isEditing {
+        NavigationView {
+            VStack {
+                Image(avatar)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 140)
+                    .clipShape(Circle())
+                    .shadow(color: /*@START_MENU_TOKEN@*/.black/*@END_MENU_TOKEN@*/, radius: 5, x: -2, y: 5)
+                    .padding(.top, 50)
                 
-                TextField("Имя", text: $name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                TextField("Фамилия", text: $surname)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-            } else {
-                Text("\(name) \(surname)")
+                Text(name.isEmpty && lastName.isEmpty
+                        ? "Guest"
+                        : "\(name) \(lastName)"
+                )
                     .font(.title)
-            }
-            
-            Spacer()
-            
-            if isEditing {
-                Button("Сохранить") {
-                    UserDefaults.standard.set(name, forKey: "userName")
-                    UserDefaults.standard.set(surname, forKey: "userSurname")
-                    isEditing = false
+                    .padding()
+                
+                Spacer()
+                
+                ButtonView(title: "Login", background: .primary, foreground: .white) {
+                    isShowingLoginView.toggle()
                 }
                 .padding()
-            } else {
-                Button("Изменить данные") {
-                    isEditing = true
+                
+                ButtonView(title: "Log out", background: .secondary, foreground: .white) {
+                    name = ""
+                    lastName = ""
                 }
-                .padding()
+                
+                Spacer()
             }
-            
-            Button("Выйти из аккаунта") {
-                UserDefaults.standard.removeObject(forKey: "userName")
-                UserDefaults.standard.removeObject(forKey: "userSurname")
-                name = ""
-                surname = ""
-                isEditing = true
+            .navigationBarTitle("Account", displayMode: .inline)
+            .sheet(isPresented: $isShowingLoginView) {
+                LoginView()
             }
-            .foregroundColor(.red)
-            .padding(.bottom, 50)
-            
-            Spacer()
         }
-        .navigationBarTitle("Аккаунт", displayMode: .inline)
     }
 }
 
