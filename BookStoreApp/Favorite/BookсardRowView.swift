@@ -58,6 +58,9 @@ struct BookсardRowView: View {
     }
 }
 
-#Preview {
-    BookсardRowView(book: MockBook.getBook())
+struct BookсardRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        BookсardRowView(book: MockBook.getBook())
+            .previewLayout(.fixed(width: 320, height: 140))
+    }
 }
