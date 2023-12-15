@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     struct Drawing {
         static let logoImage = "logo"
-        static let buttonSkip = "Пропустить"
+        static let buttonSkip = "Skip"
     }
     
     @Binding var isOnboarding: Bool
@@ -37,6 +37,9 @@ struct OnboardingView: View {
                         VStack {
                             Image(vm.source[it].image)
                                 .resizable()
+                                .scaledToFill()
+                                .opacity(0.8)
+                                .clipShape(Circle())
                                 .frame(width: 350, height: 350)
                             
                             Text(vm.source[it].title)
@@ -70,8 +73,10 @@ struct OnboardingView: View {
                 .padding(.bottom, 24)
                 
                 Button {
-                    if vm.stepHandler() {
-                        isOnboarding.toggle()
+                    withAnimation {
+                        if vm.stepHandler() {
+                            isOnboarding.toggle()
+                        }
                     }
                 } label: {
                     Text(vm.bottomButtonTitle)

@@ -33,7 +33,7 @@ struct AccountView: View {
                 
                 Spacer()
                 
-                ButtonView(title: "Login", background: .primary, foreground: .white) {
+                ButtonView(title: "Login", background: .primary, foreground: .green) {
                     isShowingLoginView.toggle()
                 }
                 .padding()

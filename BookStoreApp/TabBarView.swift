@@ -38,7 +38,11 @@ struct TabBarView: View {
                 ForEach(Tab.allCases, id: \.self) { tab in
                     Spacer()
                     
-                    Button(action: { selectedTab = tab }) {
+                    Button {
+                        withAnimation(.interactiveSpring(duration: 0.2)) {
+                            selectedTab = tab
+                        }
+                    } label: {
                         VStack {
                             Image(systemName: tab.icon)
                                 .font(.title2)
@@ -56,7 +60,6 @@ struct TabBarView: View {
                                 .foregroundStyle(colorScheme == .dark ? .white : .black)
                         }
                     }
-                    .animation(.interactiveSpring, value: selectedTab)
                     
                     Spacer()
                 }

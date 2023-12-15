@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("theme") private var isDark = false
     @State private var selectedTab: Tab = .home
     
     var body: some View {
@@ -31,6 +32,7 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea(.keyboard)
+        .preferredColorScheme(isDark ? .dark : .light)
     }
 }
 

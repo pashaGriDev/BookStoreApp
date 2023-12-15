@@ -13,7 +13,7 @@ struct LoginView: View {
     @AppStorage("username") private var name = ""
     @AppStorage("userLastname") private var lastName = ""
     @AppStorage("avatar") private var avatar = "wizard"
-    @State private var isDark = false
+    @AppStorage("theme") private var isDark = false
     
     let avatars = ["wizard", "knight", "boy", "girl", "sage"]
     

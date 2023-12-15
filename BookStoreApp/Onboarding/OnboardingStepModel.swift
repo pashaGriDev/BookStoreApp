@@ -17,19 +17,19 @@ extension OnboardingStep {
     static func createSteps() -> [OnboardingStep] {
         [
             OnboardingStep(
-                image: "on1",
-                title: "",
+                image: "onboarding1",
+                title: "Welcome!",
                 description: "Read more and stress less with our online book shopping app. Shop from anywhere you are and discover titles that you love. Happy reading!"
             ),
             OnboardingStep(
-                image: "on2",
-                title: "",
-                description: "Описание 2"
+                image: "onboarding2",
+                title: "Read what you really like",
+                description: "In our app you can find for yourself real hidden diamonds, you should only pay attention to user rating of books. Don't forget to use the search bar!"
             ),
             OnboardingStep(
-                image: "on3",
-                title: "",
-                description: "Описание 3"
+                image: "category_4",
+                title: "Add in your favorites",
+                description: "Read it and forgot it? No, add your favorite books to your favorites and come back whenever you want!"
             )
         ]
     }

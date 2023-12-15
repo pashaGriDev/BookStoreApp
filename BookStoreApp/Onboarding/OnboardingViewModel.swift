@@ -14,8 +14,8 @@ class OnboardingViewModel: ObservableObject {
     
     var bottomButtonTitle: String {
         currentStep < source.count - 1
-             ? "Далее"
-             : "Начать чтение"
+             ? "Next"
+             : "Go read"
     }
     
     func skipHandler() {
