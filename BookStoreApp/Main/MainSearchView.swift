@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainSearchView: View {
     @Binding var searchText: String
+    @Binding var isSearch: Bool
     let action: () -> Void
     
     var body: some View {
@@ -19,16 +20,21 @@ struct MainSearchView: View {
             Button {
                 action()
             } label: {
-                Image(systemName: "magnifyingglass")
-                    .renderingMode(.template)
-                    .foregroundColor(.black)
+                if !isSearch {
+                    Image(systemName: "magnifyingglass")
+                        .renderingMode(.template)
+                        .foregroundColor(.black)
+                } else {
+                    Text("Cancel")
+                        .foregroundStyle(.blue)
+                }
             }
-            .frame(width: 35, height: 35)
+            .frame(width: !isSearch ? 35 : .infinity, height: 35)
         }
         .padding(.horizontal, 20)
     }
 }
 
 #Preview {
-    MainSearchView(searchText: .constant(""), action: {})
+    MainSearchView(searchText: .constant(""), isSearch: .constant(true), action: {})
 }

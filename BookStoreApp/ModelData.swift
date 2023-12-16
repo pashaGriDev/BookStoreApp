@@ -14,6 +14,7 @@ class ModelData: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var isSearch: Bool = false
     @Published var books: [BookModelData] = []
+    @Published var getSearch: [BookModelData] = []
     
     private let network: Network<Endpoint> = .init()
     
@@ -28,7 +29,8 @@ class ModelData: ObservableObject {
                     .init(title: $0.title,
                           key: $0.key,
                           category: $0.subject.first ?? "",
-                          author: $0.authors.first?.name ?? "")
+                          author: $0.authors.first?.name ?? "",
+                          coverId: $0.cover_id)
                 }
                 isLoading.toggle()
             }
@@ -44,11 +46,12 @@ class ModelData: ObservableObject {
             let subj = try await network.request(service: .search(search, "10"), model: SearchModel.self)
             
             await MainActor.run {
-                books = subj.docs.map {
+                getSearch = subj.docs.map {
                     .init(title: $0.title,
                           key: $0.key,
                           category: $0.subject?.first ?? "",
-                          author: $0.author_name.first ?? "")
+                          author: $0.author_name.first ?? "",
+                          coverId: $0.cover_i)
                 }
                 isSearch.toggle()
             }
