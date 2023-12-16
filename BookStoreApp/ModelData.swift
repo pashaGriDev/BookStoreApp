@@ -18,7 +18,7 @@ class ModelData: ObservableObject {
     
     private let network: Network<Endpoint> = .init()
     
-    func getSubject() async {
+    func getSubject(category: SubjectCategory = .love) async {
         guard books.isEmpty else { return }
         
         do {

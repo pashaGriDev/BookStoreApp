@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct CategoriesRowView: View {
+struct CategoriesListView: View {
     let categories : [String]
     let sort : Bool
+    let newCategories = SubjectCategory.allCases
 
     let columns = [
         GridItem(.flexible()),
@@ -18,8 +19,11 @@ struct CategoriesRowView: View {
     var body: some View {
         ScrollView(){
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(sort ? categories.sorted() : categories.sorted().reversed(), id: \.self) { item in
-                    CategoryItem(item: item)
+                ForEach( sort ?
+                         newCategories.sorted(by: { $0.rawValue < $1.rawValue}) :
+                            newCategories.sorted(by: { $0.rawValue < $1.rawValue}).reversed(),
+                         id: \.self) { item in
+                    CategoryItem(item: item.rawValue)
                 }
             }
             .padding(.horizontal)
@@ -31,7 +35,7 @@ struct CategoryItem: View {
     var item: String
     
     var body: some View {
-        NavigationLink(destination: ContentView()) {
+        NavigationLink(destination: CategorisBooksView(categorie: .drama)) {
             Text(item)
                 .clipShape(Rectangle())
                 .frame(minWidth: 150, maxWidth: .infinity, minHeight: 120)
@@ -45,5 +49,5 @@ struct CategoryItem: View {
 }
 
 #Preview {
-    CategoriesRowView(categories: ["Category"], sort: false)
+    CategoriesListView(categories: ["Category"], sort: false)
 }

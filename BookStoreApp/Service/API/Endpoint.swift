@@ -56,7 +56,16 @@ extension Endpoint: Service {
     }
 }
 
-enum SubjectCategory: String {
-    case love = "love"
-    case drama = "drama"
+enum SubjectCategory: String, CaseIterable {
+    case love = "Love"
+    case drama = "Drama"
+    case fantasy = "Fantasy"
+    case horror = "Horror"
+    case humor = "Humor"
+    case literature = "Literature"
+    case magic = "Magic"
+    case plays = "Plays"
+    case poetry = "Poetry"
+    case romance = "Romance"
+    case thriller = "Thriller"
 }
