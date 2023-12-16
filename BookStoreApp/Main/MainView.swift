@@ -13,19 +13,22 @@ struct MainView: View {
 //    @StateObject var vm = MainViewModel()
     @State private var searchText = ""
     @State private var sortIsActive = false
+    var scrollOrintation = true
     
     var body: some View {
         NavigationView {
             VStack {
-                SearchBarView(
-                    searchText: $searchText,
-                    sortIsActive: $sortIsActive
-                )
+                MainSearchView(searchText: $searchText, action: {
+                    Task {
+                        await modelData.getSearchItems(search: searchText)
+                    }
+                })
                     .padding(.bottom)
                 
                 HeadlineView(headline: "Top Books",
                              buttonTitle: "see more",
                              action: {
+                    
                 })
                 
                 HStack(spacing: 16) {
@@ -36,33 +39,20 @@ struct MainView: View {
                 }
                 .padding([.leading, .bottom])
                 
-                ScrollView {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack {
-                            ForEach(modelData.items.indices, id: \.self) { index in
-                                NavigationLink {
-                                    Text("Detail view \(modelData.items[index].key)")
-                                } label: {
-                                    BookCellView(item: modelData.items[index])
-                                }
-                            }
-                        }
+                
+                if modelData.isSearch {
+                    ScrollView {
+                        Text(modelData.searchItem?.name ?? "")
                     }
-                    
-                    Divider()
-                    
-                    HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHStack {
-                            ForEach(modelData.items.indices, id: \.self) { index in
-                                NavigationLink {
-                                    Text("Detail view \(modelData.items[index].key)")
-                                } label: {
-                                    BookCellView(item: modelData.items[index])
-                                }
-                            }
-                        }
+                } else {
+                    ScrollView {
+                        BooksListView(booksList: $modelData.items)
+                        
+                        Divider()
+                        
+                        HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
+                        
+                        BooksListView(booksList: $modelData.items)
                     }
                 }
             }
