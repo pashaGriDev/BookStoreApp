@@ -9,20 +9,27 @@ import Foundation
 
 class ModelData: ObservableObject {
     @Published var items: [WorksModel] = []
+    
     @Published var searchItem: SubjectsModel?
     @Published var isLoading: Bool = false
     @Published var isSearch: Bool = false
+    @Published var books: [BookModelData] = []
     
     private let network: Network<Endpoint> = .init()
     
     func getSubject() async {
-        guard items.isEmpty else { return }
+        guard books.isEmpty else { return }
         
         do {
             let subj = try await network.request(service: .subject(.love), model: SubjectsModel.self)
 
             await MainActor.run {
-                items = subj.works
+                books = subj.works.map{
+                    .init(title: $0.title,
+                          key: $0.key,
+                          category: $0.subject.first ?? "",
+                          author: $0.authors.first?.name ?? "")
+                }
                 isLoading.toggle()
             }
             
@@ -33,13 +40,16 @@ class ModelData: ObservableObject {
     }
     
     func getSearchItems(search: String) async {
-//        print(search)
-//        guard items.isEmpty else { return }
         do {
             let subj = try await network.request(service: .search(search, "10"), model: SearchModel.self)
-            print(type (of: subj))
+            
             await MainActor.run {
-//                items = subj.works
+                books = subj.docs.map {
+                    .init(title: $0.title,
+                          key: $0.key,
+                          category: $0.subject?.first ?? "",
+                          author: $0.author_name.first ?? "")
+                }
                 isSearch.toggle()
             }
             

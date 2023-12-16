@@ -42,17 +42,18 @@ struct MainView: View {
                 
                 if modelData.isSearch {
                     ScrollView {
-                        Text(modelData.searchItem?.name ?? "")
+                        BooksListView(booksList: $modelData.books)
+//                        Text(modelData.searchItem?.name ?? "")
                     }
                 } else {
                     ScrollView {
-                        BooksListView(booksList: $modelData.items)
+                        BooksListView(booksList: $modelData.books)
                         
                         Divider()
                         
                         HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
                         
-                        BooksListView(booksList: $modelData.items)
+                        BooksListView(booksList: $modelData.books)
                     }
                 }
             }
