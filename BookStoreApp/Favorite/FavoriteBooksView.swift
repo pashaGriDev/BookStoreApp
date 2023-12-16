@@ -9,7 +9,7 @@ import SwiftUI
 // image url
 // "https://covers.openlibrary.org/b/id/258027-M.jpg"
 struct FavoriteBooksView: View {
-    let books: [MockBook]
+//    let books: [MockBook]
     
     var body: some View {
         NavigationView {
@@ -30,5 +30,5 @@ struct FavoriteBooksView: View {
 }
 
 #Preview {
-    FavoriteBooksView(books: [MockBook.getBook()])
+    FavoriteBooksView()
 }

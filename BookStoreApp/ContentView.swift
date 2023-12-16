@@ -20,7 +20,7 @@ struct ContentView: View {
                 case .categories:
                     CategoryView()
                 case .likes:
-                    FavoriteBooksView(books: [MockBook.getBook()])
+                    FavoriteBooksView()
                 case .account:
                     AccountView()
                 }
