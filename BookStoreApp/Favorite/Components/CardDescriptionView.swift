@@ -16,6 +16,7 @@ struct CardDescriptionView: View {
     enum Drawing {
         static let height: CGFloat = 140.0
         static let cornerRadius: CGFloat = 8.0
+        static let width: CGFloat = 90
         static let closeImageName: String = "xmark"
     }
     
@@ -24,7 +25,7 @@ struct CardDescriptionView: View {
             image
                 .resizable()
                 .scaledToFit()
-                .frame(height: Drawing.height)
+                .frame(width: Drawing.width, height: Drawing.height)
             
             VStack(alignment: .leading) {
                 Text("**\(title)**")

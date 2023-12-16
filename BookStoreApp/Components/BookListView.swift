@@ -10,15 +10,21 @@ import SwiftUI
 struct BookListView: View {
     // сделать инициализатор
     // структура должна приниматься массив данных для цикла
-    @Binding var booksList: [BookModelData]
+    var booksList: [BookModelData]
+    
+    init(booksList: [BookModelData]) {
+        self.booksList = booksList
+    }
     
     var body: some View {
         ScrollView {
-            ForEach($booksList.indices, id: \.self) { _ in
+            ForEach(booksList.indices, id: \.self) { item in
                 NavigationLink {
                     Text("Show detail view!")
                 } label: {
-                    CardViewCell() {
+                    CardViewCell(coverId: booksList[item].coverId ?? 0,
+                                 title: booksList[item].title,
+                                 author: booksList[item].author) {
                         print("Close card!")
                     }
                         .padding(.horizontal)
@@ -29,5 +35,5 @@ struct BookListView: View {
 }
 
 #Preview {
-    BookListView(booksList: .constant([BookModelData(title: "", key: "", category: "", author: "")]))
+    BookListView(booksList: [BookModelData(title: "", key: "", category: "", author: "")])
 }

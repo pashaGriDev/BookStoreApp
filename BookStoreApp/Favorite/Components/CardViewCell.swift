@@ -9,14 +9,20 @@ import SwiftUI
 
 struct CardViewCell: View {
     private let url: URL
+    private let coverId: Int
     private let title: String
     private let author: String
     private let action: () -> Void
     
     private let height: CGFloat = 140.0
     
+    
     var body: some View {
-        CacheAsyncImage(url: url) { phase in
+        CacheAsyncImage(
+            url: .createUrlBy(
+                id: coverId
+            )
+        ){ phase in
             switch phase {
             case .empty:
                 HStack {
@@ -38,11 +44,13 @@ struct CardViewCell: View {
     
     init(
         url: URL = URL(string: "https://covers.openlibrary.org/b/id/258027-M.jpg")!,
+        coverId: Int = 0,
         title: String = "Wuthering Heights",
         author: String = "Taylor Swift",
         action: @escaping () -> Void = {}
     ) {
         self.url = url
+        self.coverId = coverId
         self.title = title
         self.author = author
         self.action = action

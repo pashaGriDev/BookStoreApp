@@ -15,7 +15,7 @@ struct FavoriteBooksView: View {
     @EnvironmentObject var modelData: ModelData
     var body: some View {
         NavigationView {
-            BookListView(booksList: $modelData.books)
+            BookListView(booksList: modelData.books)
                 .navigationTitle("Favorite books")
                 .navigationBarTitleDisplayMode(.inline)
         }
