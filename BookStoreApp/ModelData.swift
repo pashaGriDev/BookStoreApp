@@ -8,30 +8,37 @@
 import Foundation
 
 class ModelData: ObservableObject {
-    @Published var items: [WorksModel] = []
     
+    // MARK: - Public properties
+    @Published var items: [WorksModel] = []
     @Published var searchItem: SubjectsModel?
     @Published var isLoading: Bool = false
     @Published var isSearch: Bool = false
     @Published var books: [BookModelData] = []
     @Published var getSearch: [BookModelData] = []
     
+    @Published var favoriteBooks: [BookModelData] = []
+    
+    // MARK: - Private properties
     private let network: Network<Endpoint> = .init()
     
+    // MARK: - Network Methods
     func getSubject() async {
         guard books.isEmpty else { return }
         
         do {
             let subj = try await network.request(service: .subject(.love), model: SubjectsModel.self)
+            
+            let temp: [BookModelData] = subj.works.map{
+                .init(title: $0.title,
+                      key: $0.key,
+                      category: $0.subject.first ?? "",
+                      author: $0.authors.first?.name ?? "",
+                      coverId: $0.cover_id)
+            }
 
             await MainActor.run {
-                books = subj.works.map{
-                    .init(title: $0.title,
-                          key: $0.key,
-                          category: $0.subject.first ?? "",
-                          author: $0.authors.first?.name ?? "",
-                          coverId: $0.cover_id)
-                }
+                self.books = temp
                 isLoading.toggle()
             }
             
@@ -45,14 +52,16 @@ class ModelData: ObservableObject {
         do {
             let subj = try await network.request(service: .search(search, "10"), model: SearchModel.self)
             
+            let temp: [BookModelData] = subj.docs.map {
+                .init(title: $0.title,
+                      key: $0.key,
+                      category: $0.subject?.first ?? "",
+                      author: $0.author_name.first ?? "",
+                      coverId: $0.cover_i)
+            }
+            
             await MainActor.run {
-                getSearch = subj.docs.map {
-                    .init(title: $0.title,
-                          key: $0.key,
-                          category: $0.subject?.first ?? "",
-                          author: $0.author_name.first ?? "",
-                          coverId: $0.cover_i)
-                }
+                self.getSearch = temp
                 isSearch.toggle()
             }
             
@@ -61,4 +70,7 @@ class ModelData: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    // MARK: - Methods
+    
 }
