@@ -22,7 +22,7 @@ struct BookCellView: View {
                 .shadow(radius: 2)
             
             VStack(alignment: .leading) {
-                Text("Category")
+                Text(item.category)
                     .font(.caption)
                     .foregroundColor(.white)
                 
@@ -32,7 +32,7 @@ struct BookCellView: View {
                     .foregroundColor(.white)
                     .padding(.bottom, 5)
                 
-                Text("Author name")
+                Text(item.author)
                     .font(.caption)
                     .foregroundColor(.white)
             }

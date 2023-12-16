@@ -13,4 +13,5 @@ struct BookModelData {
     var key: String
     var category: String
     var author: String
+    var coverId: Int?
 }

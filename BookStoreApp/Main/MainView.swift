@@ -27,7 +27,7 @@ struct MainView: View {
                         modelData.isSearch.toggle()
                     }
                 })
-                    .padding(.bottom)
+                    .padding(.vertical)
                 
                 if modelData.isSearch {
                     BookListView(booksList: $modelData.getSearch)

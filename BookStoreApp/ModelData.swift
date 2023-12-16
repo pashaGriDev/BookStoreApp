@@ -29,7 +29,8 @@ class ModelData: ObservableObject {
                     .init(title: $0.title,
                           key: $0.key,
                           category: $0.subject.first ?? "",
-                          author: $0.authors.first?.name ?? "")
+                          author: $0.authors.first?.name ?? "",
+                          coverId: $0.cover_id)
                 }
                 isLoading.toggle()
             }
@@ -49,7 +50,8 @@ class ModelData: ObservableObject {
                     .init(title: $0.title,
                           key: $0.key,
                           category: $0.subject?.first ?? "",
-                          author: $0.author_name.first ?? "")
+                          author: $0.author_name.first ?? "",
+                          coverId: $0.cover_i)
                 }
                 isSearch.toggle()
             }
