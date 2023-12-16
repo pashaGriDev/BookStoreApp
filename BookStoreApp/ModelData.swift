@@ -18,9 +18,12 @@ class ModelData: ObservableObject {
     @Published var getSearch: [BookModelData] = []
     
     // Detail view properties
-    @Published var detailInfo: DetailBookModel? = nil
+    @Published var detailInfo: MyDetailModel? = nil
     @Published var isDetailInfoLoading: Bool = false
     private var detailInfoLastBookKey: String?
+    private var isLastKeyNil: Bool {
+        return detailInfoLastBookKey == nil
+    }
     
     // MARK: - Private properties
     private let network: Network<Endpoint> = .init()
@@ -74,9 +77,9 @@ class ModelData: ObservableObject {
         }
     }
     
-    func getDetailDataBy(key: String) async {
+    @MainActor func getDetailDataBy(key: String) async {
         // проверка совпадает ли последний запрос.
-        guard let lastKey = detailInfoLastBookKey, lastKey != key else {
+        guard !isSame(detailInfoLastBookKey, and: key) else {
             isDetailInfoLoading.toggle()
             return
         }
@@ -84,10 +87,44 @@ class ModelData: ObservableObject {
         do {
             let result = try await network.request(service: .getDetailByKey(key), model: DetailBookModel.self)
             
-            await MainActor.run {
-                detailInfo = result
-                isDetailInfoLoading.toggle()
-            }
+            detailInfo = .init(
+                title: result.title,
+                key: result.key,
+                description: result.description,
+                coversId: result.covers.first ?? 0
+            )
+            
+            detailInfoLastBookKey = key
+            isDetailInfoLoading.toggle()
+            
+            
+        } catch {
+            // можно обработать ошибку, например показать алерт
+            await getDetailDataBy2(key: key)
+            print(error.localizedDescription)
+        }
+    }
+    
+    @MainActor func getDetailDataBy2(key: String) async {
+        // проверка совпадает ли последний запрос.
+        guard !isSame(detailInfoLastBookKey, and: key) else {
+            isDetailInfoLoading.toggle()
+            return
+        }
+        
+        do {
+            let result = try await network.request(service: .getDetailByKey(key), model: DetailBookModel2.self)
+            
+            detailInfo = .init(
+                title: result.title,
+                key: result.key,
+                description: result.description.value,
+                coversId: result.covers.first ?? 0
+            )
+            
+            detailInfoLastBookKey = key
+            isDetailInfoLoading.toggle()
+            
             
         } catch {
             // можно обработать ошибку, например показать алерт
@@ -96,5 +133,12 @@ class ModelData: ObservableObject {
     }
     
     // MARK: - Methods
-    
+}
+
+private extension ModelData {
+    /// Если nil то false
+    func isSame(_ keyOne: String?,and keyTwo: String) -> Bool {
+        guard let keyOne else { return false }
+        return keyOne == keyTwo
+    }
 }

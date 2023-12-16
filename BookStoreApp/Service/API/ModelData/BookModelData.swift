@@ -8,7 +8,8 @@
 import Foundation
 
 
-struct BookModelData {
+struct BookModelData: Identifiable, Hashable {
+    var id: UUID = .init()
     var title: String
     var key: String
     var category: String

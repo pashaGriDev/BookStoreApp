@@ -7,75 +7,59 @@
 
 import Foundation
 
-//!!!: модель крашелась, потому нужно быть осторожным если будешь добавлять новые свойства
-
-struct DetailBookModel: Codable {
+struct DetailBookModel: Decodable {
     let title: String
     let key: String
-//    let authors: [Author]
-//    let type: TypeClass
     let description: String
     let covers: [Int]
-//    let firstSentence: Created
-//    let firstPublishDate: String
-//    let links: [Link]
-//    let subjectPlaces: [String]
-//    let subjects: [String]
-//    let subjectPeople: [String]
-//    let subjectTimes: [String]
-//    let excerpts: [Excerpt]
-//    let latestRevision, revision: Int
-//    let created, lastModified: Created
     
-//    enum CodingKeys: String, CodingKey {
-//        case title, key, authors, type, description, covers
-//        case firstSentence = "first_sentence"
-//        case firstPublishDate = "first_publish_date"
-//        case links
-//        case subjectPlaces = "subject_places"
-//        case subjects
-//        case subjectPeople = "subject_people"
-//        case subjectTimes = "subject_times"
-//        case excerpts
-//        case latestRevision = "latest_revision"
-//        case revision, created
-//        case lastModified = "last_modified"
-//    }
+    var desc: String {
+        "No description"
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case key
+        case description
+        case covers
+    }
     
     var firstImageCover: Int {
-        if let id = covers.first {
-            return id
-        } else {
+        guard let id = covers.first else {
             print("Не удалось получить ИД обложки книги!")
             return 0
         }
+        return id
     }
 }
 
-//// MARK: - Author
-//struct Author: Codable {
-//    let author, type: TypeClass
-//}
-//
-//// MARK: - TypeClass
-//struct TypeClass: Codable {
-//    let key: String
-//}
-//
-//// MARK: - Created
-//struct Created: Codable {
-//    let type, value: String
-//}
-//
-//// MARK: - Excerpt
-//struct Excerpt: Codable {
-//    let excerpt, comment: String
-//    let author: TypeClass
-//}
-//
-//// MARK: - Link
-//struct Link: Codable {
-//    let title: String
-//    let url: String
-//    let type: TypeClass
-//}
+struct DetailBookModel2: Decodable {
+    let title: String
+    let key: String
+    let description: DescriptionStruct
+    let covers: [Int]
+    
+    var desc: String {
+        "No description"
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case key
+        case description
+        case covers
+    }
+    
+    var firstImageCover: Int {
+        guard let id = covers.first else {
+            print("Не удалось получить ИД обложки книги!")
+            return 0
+        }
+        return id
+    }
+}
+
+struct DescriptionStruct: Decodable {
+    var type: String
+    var value: String
+}
