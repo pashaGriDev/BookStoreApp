@@ -10,7 +10,6 @@ import SwiftUI
 struct CategorisBooksView: View {
     @EnvironmentObject var modelData: ModelData
     private let categorie: SubjectCategory
-//    private let booksList: [BookModelData]
     
     private let columns = [
         GridItem(.flexible()),
@@ -22,20 +21,21 @@ struct CategorisBooksView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView(){
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach($modelData.books.indices, id: \.self) { index in
-                        NavigationLink {
-                            Text("Detail view \(modelData.books[index].key)")
-                        } label: {
-                            BookCellView(item: modelData.books[index])
-                        }
+        
+        ScrollView(){
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach($modelData.books.indices, id: \.self) { item in
+                    NavigationLink {
+                        DetailView(key: modelData.books[item].key,
+                                   author: modelData.books[item].author)
+                    } label: {
+                        BookCellView(item: modelData.books[item])
                     }
                 }
-                .padding(.horizontal)
             }
+            .padding(.horizontal)
         }
+        .navigationTitle(categorie.rawValue)
         .task {
             await modelData.getSubject(category: categorie)
         }

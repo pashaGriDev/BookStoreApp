@@ -23,7 +23,7 @@ struct CategoriesListView: View {
                          newCategories.sorted(by: { $0.rawValue < $1.rawValue}) :
                             newCategories.sorted(by: { $0.rawValue < $1.rawValue}).reversed(),
                          id: \.self) { item in
-                    CategoryItem(item: item.rawValue)
+                    CategoryItem(categorie: item)
                 }
             }
             .padding(.horizontal)
@@ -32,11 +32,12 @@ struct CategoriesListView: View {
 }
 
 struct CategoryItem: View {
-    var item: String
+//    var item: String
+    var categorie: SubjectCategory
     
     var body: some View {
-        NavigationLink(destination: CategorisBooksView(categorie: .drama)) {
-            Text(item)
+        NavigationLink(destination: CategorisBooksView(categorie: categorie)) {
+            Text(categorie.rawValue)
                 .clipShape(Rectangle())
                 .frame(minWidth: 150, maxWidth: .infinity, minHeight: 120)
                 .background(Image("category_\(Int.random(in: 1...4))"))
