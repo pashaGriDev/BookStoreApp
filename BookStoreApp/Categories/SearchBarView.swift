@@ -17,6 +17,7 @@ struct SearchBarView: View {
     var body: some View {
         HStack{
             TextField("Search title/author/ISBN no", text: $searchText)
+                .frame(height: 35)
                 .padding(7)
                 .padding(.leading, 25)
                 .background(Color(red: 222 / 255, green: 222 / 255, blue: 222 / 255, opacity: 1.0))
@@ -39,6 +40,7 @@ struct SearchBarView: View {
                         }
                     }
                 )
+                
                 .padding(.leading, 20)
                 .onTapGesture {
                     self.isEditing = true

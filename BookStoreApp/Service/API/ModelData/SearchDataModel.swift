@@ -21,7 +21,7 @@ struct SearchModel: Codable {
 struct DocsModel: Codable {
         var key: String
         var type: String
-        var seed: [ String ]
+        var seed: [String]
         var title: String
         var title_suggest: String
         var title_sort: String
