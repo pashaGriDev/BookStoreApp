@@ -53,5 +53,5 @@ struct BooksSearchListView: View {
                 author_key: [""],
                 author_name: [""],
                 publisher_facet: nil,
-                author_facet: nil)]))
+                author_facet: nil, subject: nil)]))
 }

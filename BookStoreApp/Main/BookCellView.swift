@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BookCellView: View {
-    let item: WorksModel
+//    let item: WorksModel
+    let item: BookModelData
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -51,5 +52,5 @@ struct BookCellView: View {
 }
 
 #Preview {
-    BookCellView(item: mockWork)
+    BookCellView(item: BookModelData(title: "", key: "", category: "", author: ""))
 }
