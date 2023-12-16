@@ -38,6 +38,6 @@ struct AsyncCoverImage: View {
     }
 }
 
-#Preview {
-    AsyncCoverImage(url: MockBook.getBook().coverImageURL)
-}
+//#Preview {
+//    AsyncCoverImage(url: MockBook.getBook().coverImageURL)
+//}

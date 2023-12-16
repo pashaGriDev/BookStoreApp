@@ -6,18 +6,20 @@
 //
 
 import SwiftUI
-
+// image url
+// "https://covers.openlibrary.org/b/id/258027-M.jpg"
 struct FavoriteBooksView: View {
-    let books: [MockBook]
+//    let books: [MockBook]
     
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(books) { book in
+                ForEach(0...2, id: \.self) { _ in
                     NavigationLink {
 //                        DetailView(book: book)
                     } label: {
-                        BookсardRowView(book: book)
+                        CardViewCell() { print("Close card!") }
+                            .padding(.horizontal)
                     }
                 }
             }
@@ -28,5 +30,5 @@ struct FavoriteBooksView: View {
 }
 
 #Preview {
-    FavoriteBooksView(books: [MockBook.getBook()])
+    FavoriteBooksView()
 }

@@ -20,8 +20,8 @@ struct WorksModel: Codable {
     var key: String
     var title: String
     var edition_count: Int
-    var cover_id: Int
-    var cover_edition_key: String
+    var cover_id: Int // картинка обложки по ид
+    var cover_edition_key: String // картинка обложки по olid
     var subject: [String]
     var ia_collection: [String]
     var lendinglibrary: Bool
