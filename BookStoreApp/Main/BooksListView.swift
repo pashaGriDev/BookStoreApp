@@ -9,25 +9,34 @@ import SwiftUI
 
 struct BooksListView: View {
 //    @Binding var booksList: [WorksModel]
-    @Binding var booksList: [BookModelData]
+    private var booksList: [BookModelData]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
-                ForEach($booksList.indices, id: \.self) { index in
+                ForEach(booksList, id: \.self) { item in
                     NavigationLink {
-                        Text("Detail view \(booksList[index].key)")
+                        DetailView(
+                            key: item.key,
+                            author: item.author
+                        )
                     } label: {
-                        BookCellView(item: booksList[index])
+                        BookCellView(item: item)
                     }
                 }
             }
         }
     }
+    
+    init(
+        _ booksList: [BookModelData]
+    ) {
+        self.booksList = booksList
+    }
 }
 
-#Preview {
-    BooksListView(
-        booksList:
-                .constant([BookModelData(title: "", key: "", category: "", author: "")]))
-}
+//#Preview {
+//    BooksListView(
+//        booksList:
+//                .constant([BookModelData(title: "", key: "", category: "", author: "")]))
+//}

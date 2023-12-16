@@ -11,7 +11,7 @@ struct DetailViewImp: View {
     // сделать инициализатор
     
      let author: String
-     var item: DetailBookModel?
+     var item: MyDetailModel?
     
     @Binding var isFavourite: Bool
     
@@ -30,7 +30,7 @@ struct DetailViewImp: View {
                 HStack {
                     CacheAsyncImage(
                         url: .createUrlBy(
-                            id: item?.firstImageCover ?? 0
+                            id: item?.coversId ?? 0
                         )
                     ) { phase in
                         switch phase {

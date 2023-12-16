@@ -13,8 +13,6 @@ struct DetailView: View {
     private let key: String
     private let author: String
     
-    @State private var item: DetailBookModel?
-    @State private var isLoading = false
     @State private var isFavourite = false
     
     var body: some View {
@@ -23,7 +21,7 @@ struct DetailView: View {
             case true:
                 DetailViewImp(
                     author: author,
-                    item: item,
+                    item: modelData.detailInfo,
                     isFavourite: $isFavourite
                 )
             case false:
@@ -36,22 +34,23 @@ struct DetailView: View {
         .onDisappear {
             modelData.isDetailInfoLoading.toggle()
         }
+        .onAppear {
+            print("onAppear: \(key)")
+        }
     }
     
     init(
-        key: String = "123",
-        author: String = "Taylor Swift",
-        item: DetailBookModel?
+        key: String,
+        author: String
     ) {
         self.key = key
         self.author = author
-        self.item = item
     }
 }
 
 #Preview {
     NavigationView {
-        DetailView(item: nil)
+        DetailView(key: "", author: "Bob")
             .environmentObject(ModelData())
     }
 }
