@@ -17,7 +17,10 @@ class ModelData: ObservableObject {
     @Published var books: [BookModelData] = []
     @Published var getSearch: [BookModelData] = []
     
-    @Published var favoriteBooks: [BookModelData] = []
+    // Detail view properties
+    @Published var detailInfo: DetailBookModel? = nil
+    @Published var isDetailInfoLoading: Bool = false
+    private var detailInfoLastBookKey: String?
     
     // MARK: - Private properties
     private let network: Network<Endpoint> = .init()
@@ -63,6 +66,27 @@ class ModelData: ObservableObject {
             await MainActor.run {
                 self.getSearch = temp
                 isSearch.toggle()
+            }
+            
+        } catch {
+            // можно обработать ошибку, например показать алерт
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getDetailDataBy(key: String) async {
+        // проверка совпадает ли последний запрос.
+        guard let lastKey = detailInfoLastBookKey, lastKey != key else {
+            isDetailInfoLoading.toggle()
+            return
+        }
+        
+        do {
+            let result = try await network.request(service: .getDetailByKey(key), model: DetailBookModel.self)
+            
+            await MainActor.run {
+                detailInfo = result
+                isDetailInfoLoading.toggle()
             }
             
         } catch {

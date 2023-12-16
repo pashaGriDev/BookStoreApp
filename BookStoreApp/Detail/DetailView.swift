@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct DetailView: View {
-    private let id: String
+    @EnvironmentObject var modelData: ModelData
+    
+    private let key: String
     private let author: String
     
     @State private var item: DetailBookModel?
@@ -17,7 +19,7 @@ struct DetailView: View {
     
     var body: some View {
         VStack {
-            switch isLoading {
+            switch modelData.isDetailInfoLoading {
             case true:
                 DetailViewImp(
                     author: author,
@@ -28,20 +30,20 @@ struct DetailView: View {
                 ProgressView()
             }
         }
-        .onAppear {
-            print("Получить данные")
-            sleep(3)
-            // передать ИД в запрос
-            self.item = mockDetailBook
+        .task {
+            await modelData.getDetailDataBy(key: key)
+        }
+        .onDisappear {
+            modelData.isDetailInfoLoading.toggle()
         }
     }
     
     init(
-        id: String = "123",
+        key: String = "123",
         author: String = "Taylor Swift",
         item: DetailBookModel?
     ) {
-        self.id = id
+        self.key = key
         self.author = author
         self.item = item
     }
@@ -50,5 +52,6 @@ struct DetailView: View {
 #Preview {
     NavigationView {
         DetailView(item: nil)
+            .environmentObject(ModelData())
     }
 }
