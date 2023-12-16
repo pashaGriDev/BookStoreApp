@@ -28,6 +28,7 @@
 		10E5EC3E2B2CE9EB00C0059C /* CardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5EC3D2B2CE9EB00C0059C /* CardViewCell.swift */; };
 		10E5EC412B2CF87900C0059C /* CardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5EC402B2CF87900C0059C /* CardDescriptionView.swift */; };
 		10E5EC432B2CF8F600C0059C /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5EC422B2CF8F600C0059C /* ErrorView.swift */; };
+		10E5EC452B2DB84C00C0059C /* DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E5EC442B2DB84C00C0059C /* DView.swift */; };
 		12A9ECD52B210A49005BF0BA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A9ECD42B210A49005BF0BA /* Network.swift */; };
 		12A9ECD82B210FA5005BF0BA /* SearchDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A9ECD72B210FA5005BF0BA /* SearchDataModel.swift */; };
 		12A9ECDB2B225300005BF0BA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A9ECDA2B225300005BF0BA /* MainViewModel.swift */; };
@@ -78,6 +79,7 @@
 		10E5EC3D2B2CE9EB00C0059C /* CardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewCell.swift; sourceTree = "<group>"; };
 		10E5EC402B2CF87900C0059C /* CardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDescriptionView.swift; sourceTree = "<group>"; };
 		10E5EC422B2CF8F600C0059C /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		10E5EC442B2DB84C00C0059C /* DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DView.swift; sourceTree = "<group>"; };
 		12A9ECD42B210A49005BF0BA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		12A9ECD72B210FA5005BF0BA /* SearchDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataModel.swift; sourceTree = "<group>"; };
 		12A9ECDA2B225300005BF0BA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7AB5662B24AE8000CC23CB /* DetailView.swift */,
+				10E5EC442B2DB84C00C0059C /* DView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				FAAC47F92B2B7A27002B7136 /* HeadlineView.swift */,
 				FAAC47FB2B2B7EF8002B7136 /* SwitchButtonView.swift */,
 				10E5EC422B2CF8F600C0059C /* ErrorView.swift */,
+				FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -208,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				10E5EC3F2B2CF85E00C0059C /* Components */,
-				FA7AB56F2B24D25000CC23CB /* AsyncCoverImage.swift */,
 				FA7AB5692B24AE8000CC23CB /* FavoriteBooksView.swift */,
 				FA7AB5712B24DE4200CC23CB /* BookсardRowView.swift */,
 			);
@@ -383,6 +386,7 @@
 				10554B0A2B2B1DEF000E9AC4 /* BookCellView.swift in Sources */,
 				12A9ECE22B25FCEE005BF0BA /* DetailModel.swift in Sources */,
 				B3138B7B2B28923100706354 /* AccountView.swift in Sources */,
+				10E5EC452B2DB84C00C0059C /* DView.swift in Sources */,
 				3B17C3462B2A3ADD00DDF70C /* CategoryViewModel.swift in Sources */,
 				10554B0E2B2B26B0000E9AC4 /* MockDataSource.swift in Sources */,
 				12A9ECD52B210A49005BF0BA /* Network.swift in Sources */,

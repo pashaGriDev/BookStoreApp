@@ -9,33 +9,37 @@ import Foundation
 
 // MARK: - Welcome
 struct DetailBookModel: Codable {
-    let title, key: String
-    let authors: [Author]
-    let type: TypeClass
+    let title: String
+    let key: String
+//    let authors: [Author]
+//    let type: TypeClass
     let description: String
-    let covers: [Int]
-    let firstSentence: Created
-    let firstPublishDate: String
-    let links: [Link]
-    let subjectPlaces, subjects, subjectPeople, subjectTimes: [String]
-    let excerpts: [Excerpt]
-    let latestRevision, revision: Int
-    let created, lastModified: Created
-
-    enum CodingKeys: String, CodingKey {
-        case title, key, authors, type, description, covers
-        case firstSentence = "first_sentence"
-        case firstPublishDate = "first_publish_date"
-        case links
-        case subjectPlaces = "subject_places"
-        case subjects
-        case subjectPeople = "subject_people"
-        case subjectTimes = "subject_times"
-        case excerpts
-        case latestRevision = "latest_revision"
-        case revision, created
-        case lastModified = "last_modified"
-    }
+//    let covers: [Int]
+//    let firstSentence: Created
+//    let firstPublishDate: String
+//    let links: [Link]
+//    let subjectPlaces: [String]
+//    let subjects: [String]
+//    let subjectPeople: [String]
+    let subjectTimes: [String]
+//    let excerpts: [Excerpt]
+//    let latestRevision, revision: Int
+//    let created, lastModified: Created
+    
+//    enum CodingKeys: String, CodingKey {
+//        case title, key, authors, type, description, covers
+//        case firstSentence = "first_sentence"
+//        case firstPublishDate = "first_publish_date"
+//        case links
+//        case subjectPlaces = "subject_places"
+//        case subjects
+//        case subjectPeople = "subject_people"
+//        case subjectTimes = "subject_times"
+//        case excerpts
+//        case latestRevision = "latest_revision"
+//        case revision, created
+//        case lastModified = "last_modified"
+//    }
 }
 
 // MARK: - Author

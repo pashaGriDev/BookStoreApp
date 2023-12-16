@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CardViewCell: View {
-    let url: URL
-    let title: String
-    let author: String
-    let action: () -> Void
+    private let url: URL
+    private let title: String
+    private let author: String
+    private let action: () -> Void
     
     private let height: CGFloat = 140.0
     
