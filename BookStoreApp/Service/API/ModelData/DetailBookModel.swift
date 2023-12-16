@@ -21,7 +21,7 @@ struct DetailBookModel: Codable {
 //    let subjectPlaces: [String]
 //    let subjects: [String]
 //    let subjectPeople: [String]
-    let subjectTimes: [String]
+//    let subjectTimes: [String]
 //    let excerpts: [Excerpt]
 //    let latestRevision, revision: Int
 //    let created, lastModified: Created

@@ -9,7 +9,7 @@ import Foundation
 
 let mockWork: WorksModel = Bundle.main.load("mockWork.json")
 let mockDocs: DocsModel = Bundle.main.load("mockDocs.json")
-//let mockDetailBook: DetailBookModel = Bundle.main.load("mockDetailBook.json") // крашится
+let mockDetailBook: DetailBookModel = Bundle.main.load("mockDetailBook.json") // крашится
 
 extension Bundle {
     func load<T: Codable>(_ file: String) -> T {
@@ -24,6 +24,7 @@ extension Bundle {
         let decoder = JSONDecoder()
         
         guard let loaded = try? decoder.decode(T.self, from: data) else {
+            print("Ошибка сириализацаа данных \(file)")
             assert(false, "Failed to decode \(file) from bundle")
         }
         
