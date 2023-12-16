@@ -10,7 +10,9 @@ import SwiftUI
 struct DetailView: View {
     private let id: String
     private let author: String
-    private var item: DetailBookModel
+    
+    @State private var item: DetailBookModel?
+    @State private var isLoading = false
     
     enum Drawing {
         static let padding: CGFloat = 12.0
@@ -21,13 +23,69 @@ struct DetailView: View {
     @State private var isFavourite = false
     
     var body: some View {
+        VStack {
+            if isLoading {
+                DetailViewImp(
+                    author: author,
+                    item: item,
+                    isFavourite: $isFavourite
+                )
+            } else {
+                ProgressView()
+            }
+        }
+        .onAppear {
+            print("Получить данные")
+            sleep(3)
+            // передать ИД в запрос
+            self.item = mockDetailBook
+        }
+    }
+    
+    init(
+        id: String = "123",
+        author: String = "Taylor Swift",
+        item: DetailBookModel?
+    ) {
+        self.id = id
+        self.author = author
+        self.item = item
+    }
+}
+
+#Preview {
+    NavigationView {
+        DetailView(item: nil)
+    }
+}
+
+
+struct DetailViewImp: View {
+    // сделать инициализатор
+    
+     let author: String
+     var item: DetailBookModel?
+    
+    @Binding var isFavourite: Bool
+    
+    enum Drawing {
+        static let padding: CGFloat = 12.0
+        static let imageWidth: CGFloat = 137.0
+        static let imageHeight: CGFloat = 210.0
+    }
+    
+    var body: some View {
         ScrollView {
             VStack {
-                Text("**\(item.title)**")
+                Text("**\(item?.title ?? "Unknown")**")
                     .font(.title)
                 
                 HStack {
-                    CacheAsyncImage(url: URL(string: "https://covers.openlibrary.org/b/id/258027-M.jpg")!) { phase in
+                    CacheAsyncImage(
+                        url: .createUrlBy(
+                            id: item?.firstImageCover ?? 0
+                        )
+                    ) { phase in
                         switch phase {
                         case .empty:
                             HStack {
@@ -70,51 +128,26 @@ struct DetailView: View {
                 }
                 .padding(.horizontal, Drawing.padding)
                 
-                
-                DescriptionDetailView(item.description)
+                DescriptionDetailView(item?.description ?? "No description")
                 
                 Spacer()
-                
-            }
-            .navigationTitle("Detail Screen")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                Button {
-                    isFavourite.toggle()
-                    //!!!: - like action
-                    print("Favourite button tapped!")
-                } label: {
-                    Image(
-                        systemName: isFavourite
-                        ? "heart.fill"
-                        : "heart"
-                    )
-                }
-                .foregroundStyle(.black)
             }
         }
-    }
-    
-    init(
-        id: String = "123",
-        author: String = "Taylor Swift",
-        item: DetailBookModel
-    ) {
-        self.id = id
-        self.author = author
-        self.item = item
+        .navigationTitle("Detail Screen")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button {
+                isFavourite.toggle()
+                //!!!: - like action
+                print("Favourite button tapped!")
+            } label: {
+                Image(
+                    systemName: isFavourite
+                    ? "heart.fill"
+                    : "heart"
+                )
+            }
+            .foregroundStyle(.black)
+        }
     }
 }
-
-#Preview {
-    NavigationView {
-        DetailView(item: detail)
-    }
-}
-
-let detail: DetailBookModel = .init(
-    title: "Taylor Swift",
-    key: "123",
-    description: "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction.",
-    subjectTimes: ["1984"]
-)
