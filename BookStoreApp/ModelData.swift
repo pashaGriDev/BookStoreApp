@@ -16,6 +16,7 @@ class ModelData: ObservableObject {
     @Published var isSearch: Bool = false
     @Published var books: [BookModelData] = []
     @Published var getSearch: [BookModelData] = []
+    private var defaultCategory: SubjectCategory = .love
     
     // Detail view properties
     @Published var detailInfo: MyDetailModel? = nil
@@ -29,10 +30,10 @@ class ModelData: ObservableObject {
     private let network: Network<Endpoint> = .init()
     
     func getSubject(category: SubjectCategory = .love) async {
-        guard books.isEmpty else { return }
+//        guard books.isEmpty else { return }
         
         do {
-            let subj = try await network.request(service: .subject(.love), model: SubjectsModel.self)
+            let subj = try await network.request(service: .subject(category), model: SubjectsModel.self)
             
             let temp: [BookModelData] = subj.works.map{
                 .init(title: $0.title,
