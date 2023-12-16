@@ -11,6 +11,7 @@ struct CategoriesListView: View {
     let categories : [String]
     let sort : Bool
     let newCategories = SubjectCategory.allCases
+    @EnvironmentObject var modelData: ModelData
 
     let columns = [
         GridItem(.flexible()),
@@ -20,8 +21,8 @@ struct CategoriesListView: View {
         ScrollView(){
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach( sort ?
-                         newCategories.sorted(by: { $0.rawValue < $1.rawValue}) :
-                            newCategories.sorted(by: { $0.rawValue < $1.rawValue}).reversed(),
+                         modelData.categories.sorted(by: { $0.rawValue < $1.rawValue}) :
+                            modelData.categories.sorted(by: { $0.rawValue < $1.rawValue}).reversed(),
                          id: \.self) { item in
                     CategoryItem(categorie: item)
                 }
@@ -51,4 +52,5 @@ struct CategoryItem: View {
 
 #Preview {
     CategoriesListView(categories: ["Category"], sort: false)
+        .environmentObject(ModelData())
 }

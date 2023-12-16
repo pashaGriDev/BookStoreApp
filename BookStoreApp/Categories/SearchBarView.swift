@@ -11,6 +11,7 @@ struct SearchBarView: View {
     
     @Binding var searchText: String
     @Binding var sortIsActive: Bool
+    var cancelButton: () -> Void
 
     @State private var isEditing = false
     
@@ -31,6 +32,7 @@ struct SearchBarView: View {
                         
                         if isEditing {
                             Button(action: {
+                                cancelButton()
                                 self.searchText = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")
@@ -64,5 +66,5 @@ struct SearchBarView: View {
 }
 
 #Preview {
-    SearchBarView(searchText: .constant(""), sortIsActive: .constant(false))
+    SearchBarView(searchText: .constant(""), sortIsActive: .constant(false), cancelButton: {})
 }

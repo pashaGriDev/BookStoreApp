@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryView: View {
     
     @StateObject var viewModel = CategoryViewModel()
+    @EnvironmentObject var modelData: ModelData
     
     @State private var searchText = ""
     @State private var sortIsActive = false
@@ -18,12 +19,12 @@ struct CategoryView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    SearchBarView(searchText: $searchText, sortIsActive: $sortIsActive)
+                    SearchBarView(searchText: $searchText, sortIsActive: $sortIsActive, cancelButton: {
+                        modelData.searchCategory(search: nil)
+                    })
                         .padding(.top)
                         .onSubmit {
-//                            Task {
-//                                await modelData.getSearchItems(search: searchText)
-//                            }
+                            modelData.searchCategory(search: searchText)
                         }
                     HStack {
                         Text("Categories")
@@ -49,4 +50,5 @@ extension Collection {
 
 #Preview {
     CategoryView()
+        .environmentObject(ModelData())
 }
