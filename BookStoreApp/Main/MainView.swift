@@ -30,7 +30,7 @@ struct MainView: View {
                     .padding(.vertical)
                 
                 if modelData.isSearch {
-                    BookListView(booksList: $modelData.getSearch)
+                    BookListView(booksList: modelData.getSearch)
                 } else {
                     HeadlineView(headline: "Top Books",
                                  buttonTitle: "see more",
