@@ -7,14 +7,15 @@
 
 import Foundation
 
-// MARK: - Welcome
+//!!!: модель крашелась, потому нужно быть осторожным если будешь добавлять новые свойства
+
 struct DetailBookModel: Codable {
     let title: String
     let key: String
 //    let authors: [Author]
 //    let type: TypeClass
     let description: String
-//    let covers: [Int]
+    let covers: [Int]
 //    let firstSentence: Created
 //    let firstPublishDate: String
 //    let links: [Link]
@@ -40,32 +41,41 @@ struct DetailBookModel: Codable {
 //        case revision, created
 //        case lastModified = "last_modified"
 //    }
+    
+    var firstImageCover: Int {
+        if let id = covers.first {
+            return id
+        } else {
+            print("Не удалось получить ИД обложки книги!")
+            return 0
+        }
+    }
 }
 
-// MARK: - Author
-struct Author: Codable {
-    let author, type: TypeClass
-}
-
-// MARK: - TypeClass
-struct TypeClass: Codable {
-    let key: String
-}
-
-// MARK: - Created
-struct Created: Codable {
-    let type, value: String
-}
-
-// MARK: - Excerpt
-struct Excerpt: Codable {
-    let excerpt, comment: String
-    let author: TypeClass
-}
-
-// MARK: - Link
-struct Link: Codable {
-    let title: String
-    let url: String
-    let type: TypeClass
-}
+//// MARK: - Author
+//struct Author: Codable {
+//    let author, type: TypeClass
+//}
+//
+//// MARK: - TypeClass
+//struct TypeClass: Codable {
+//    let key: String
+//}
+//
+//// MARK: - Created
+//struct Created: Codable {
+//    let type, value: String
+//}
+//
+//// MARK: - Excerpt
+//struct Excerpt: Codable {
+//    let excerpt, comment: String
+//    let author: TypeClass
+//}
+//
+//// MARK: - Link
+//struct Link: Codable {
+//    let title: String
+//    let url: String
+//    let type: TypeClass
+//}
