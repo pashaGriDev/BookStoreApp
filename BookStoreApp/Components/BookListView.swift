@@ -10,10 +10,11 @@ import SwiftUI
 struct BookListView: View {
     // сделать инициализатор
     // структура должна приниматься массив данных для цикла
+    @Binding var booksList: [BookModelData]
     
     var body: some View {
         ScrollView {
-            ForEach(0...2, id: \.self) { _ in
+            ForEach($booksList.indices, id: \.self) { _ in
                 NavigationLink {
                     Text("Show detail view!")
                 } label: {
@@ -28,5 +29,5 @@ struct BookListView: View {
 }
 
 #Preview {
-    BookListView()
+    BookListView(booksList: .constant([BookModelData(title: "", key: "", category: "", author: "")]))
 }

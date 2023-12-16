@@ -108,13 +108,13 @@ struct DetailView: View {
 
 #Preview {
     NavigationView {
-        DetailView(item: detail)
+        DetailView(item: DetailBookModel(title: "", key: "", description: ""))
     }
 }
 
-let detail: DetailBookModel = .init(
-    title: "Taylor Swift",
-    key: "123",
-    description: "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction.",
-    subjectTimes: ["1984"]
-)
+//let detail: DetailBookModel = .init(
+//    title: "Taylor Swift",
+//    key: "123",
+//    description: "Wuthering Heights is an 1847 novel by Emily Brontë, initially published under the pseudonym Ellis Bell. It concerns two families of the landed gentry living on the West Yorkshire moors, the Earnshaws and the Lintons, and their turbulent relationships with Earnshaw's adopted son, Heathcliff. The novel was influenced by Romanticism and Gothic fiction.",
+//    subjectTimes: ["1984"]
+//)
