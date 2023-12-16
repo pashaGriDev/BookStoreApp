@@ -12,7 +12,7 @@ struct MainView: View {
     
     @State private var searchText = ""
     @State private var sortIsActive = false
-    var scrollOrintation = true
+
     
     var body: some View {
         NavigationView {
@@ -47,13 +47,13 @@ struct MainView: View {
                     .padding([.leading, .bottom])
                     
                     ScrollView {
-                        BooksListView(booksList: $modelData.books)
+                        BooksListView(modelData.books)
                         
                         Divider()
                         
                         HeadlineView(headline: "Recent Books", buttonTitle: "see more", action: {})
                         
-                        BooksListView(booksList: $modelData.books)
+                        BooksListView(modelData.books)
                     }
                 }
             }
