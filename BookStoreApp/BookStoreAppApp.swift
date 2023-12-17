@@ -17,6 +17,9 @@ struct BookStoreAppApp: App {
             if isOnboarding {
                 ContentView()
                     .environmentObject(modelData)
+                    .onAppear {
+                        modelData.loadFavoritData()
+                    }
             } else {
                 OnboardingView($isOnboarding)
             }

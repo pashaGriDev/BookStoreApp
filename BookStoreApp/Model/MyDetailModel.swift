@@ -7,9 +7,11 @@
 
 import Foundation
 
-struct MyDetailModel {
+struct MyDetailModel: Codable, Hashable {
     let title: String
     let key: String
     let description: String
     let coversId: Int
+    
+    var isFavorit: Bool = false
 }
