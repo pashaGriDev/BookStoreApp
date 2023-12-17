@@ -7,7 +7,9 @@
 
 import Foundation
 
-class ModelData: ObservableObject {
+final class ModelData: ObservableObject {
+    // MARK: - Dependencies
+    private let dataManager: DataManager<[MyDetailModel]> = .init()
     
     // MARK: - Public properties
     @Published var items: [WorksModel] = []
@@ -22,9 +24,8 @@ class ModelData: ObservableObject {
     @Published var detailInfo: MyDetailModel? = nil
     @Published var isDetailInfoLoading: Bool = false
     private var detailInfoLastBookKey: String?
-    private var isLastKeyNil: Bool {
-        return detailInfoLastBookKey == nil
-    }
+    private var favoriteBooks: [String : MyDetailModel] = [:]
+
     
     // MARK: - Private properties
     private let network: Network<Endpoint> = .init()
@@ -128,7 +129,6 @@ class ModelData: ObservableObject {
             detailInfoLastBookKey = key
             isDetailInfoLoading.toggle()
             
-            
         } catch {
             // можно обработать ошибку, например показать алерт
             print(error.localizedDescription)
@@ -143,5 +143,37 @@ private extension ModelData {
     func isSame(_ keyOne: String?,and keyTwo: String) -> Bool {
         guard let keyOne else { return false }
         return keyOne == keyTwo
+    }
+}
+
+// MARK: - UserDefaults
+extension ModelData {
+    func loadFavoritData() {
+        print("Загрузка.....")
+        do {
+            let temp = try dataManager.load(by: .favoriteBooks)
+            
+            // преобразуем из массива в словарь
+            favoriteBooks = temp.reduce(into: [String: MyDetailModel]()) { result, model in
+                result[model.key] = model
+            }
+            
+        } catch {
+           print("😃 Не удалось загрузить favorite книги!")
+        }
+    }
+    
+    func saveFavoritData(_ book: MyDetailModel) {
+        do {
+            // проверяем есть ли уже такая книга
+            guard favoriteBooks[book.key] == nil else { return }
+            favoriteBooks[book.key] = book
+            
+            // преобразуем в массив
+            let arrayBooks = favoriteBooks.map { $0.value }
+            try dataManager.save(arrayBooks, by: .favoriteBooks)
+        } catch {
+           print("🤬 Не удалось сохранить favorite книги!")
+        }
     }
 }
