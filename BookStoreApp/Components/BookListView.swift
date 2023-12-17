@@ -20,7 +20,7 @@ struct BookListView: View {
         ScrollView {
             ForEach(booksList, id: \.self) { item in
                 NavigationLink {
-                    Text("Show detail view!")
+                    DetailView(key: item.key, author: item.author)
                 } label: {
                     CardViewCell(coverId: item.coverId ?? 0,
                                  title: item.title,

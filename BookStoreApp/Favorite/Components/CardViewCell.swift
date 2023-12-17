@@ -39,7 +39,6 @@ struct CardViewCell: View {
             }
         }
         .frame(height: height)
-        .onAppear { print("coverId \(coverId)") }
     }
     
     init(
