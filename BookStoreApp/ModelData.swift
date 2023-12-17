@@ -16,6 +16,7 @@ class ModelData: ObservableObject {
     @Published var isSearch: Bool = false
     @Published var books: [BookModelData] = []
     @Published var getSearch: [BookModelData] = []
+    @Published var categories = SubjectCategory.allCases
     private var defaultCategory: SubjectCategory? = nil
     
     // Detail view properties
@@ -28,6 +29,15 @@ class ModelData: ObservableObject {
     
     // MARK: - Private properties
     private let network: Network<Endpoint> = .init()
+    
+    func searchCategory(search: String?) {
+        guard let search else { 
+            categories = SubjectCategory.allCases
+            return
+        }
+        var result = categories.filter { $0.rawValue == search.lowercased() }
+        categories = result
+    }
     
     func getSubject(category: SubjectCategory = .love) async {
         guard defaultCategory != category else { return }
