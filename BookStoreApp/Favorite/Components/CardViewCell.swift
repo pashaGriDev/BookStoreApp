@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CardViewCell: View {
-    private let url: URL
     private let coverId: Int
     private let title: String
     private let author: String
@@ -40,16 +39,15 @@ struct CardViewCell: View {
             }
         }
         .frame(height: height)
+        .onAppear { print("coverId \(coverId)") }
     }
     
     init(
-        url: URL = URL(string: "https://covers.openlibrary.org/b/id/258027-M.jpg")!,
-        coverId: Int = 0,
-        title: String = "Wuthering Heights",
-        author: String = "Taylor Swift",
+        coverId: Int,
+        title: String,
+        author: String,
         action: @escaping () -> Void = {}
     ) {
-        self.url = url
         self.coverId = coverId
         self.title = title
         self.author = author
@@ -57,6 +55,6 @@ struct CardViewCell: View {
     }
 }
 
-#Preview {
-    CardViewCell()
-}
+//#Preview {
+//    CardViewCell()
+//}

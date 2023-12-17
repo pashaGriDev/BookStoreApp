@@ -25,7 +25,9 @@ final class ModelData: ObservableObject {
     @Published var detailInfo: MyDetailModel? = nil
     @Published var isDetailInfoLoading: Bool = false
     private var detailInfoLastBookKey: String?
-    private var favoriteBooks: [String : MyDetailModel] = [:]
+    
+    private var favoriteBooksDic: [String : MyDetailModel] = [:]
+    @Published var favoriteBooks: [BookModelData] = []
 
     
     // MARK: - Private properties
@@ -36,7 +38,7 @@ final class ModelData: ObservableObject {
             categories = SubjectCategory.allCases
             return
         }
-        var result = categories.filter { $0.rawValue == search.lowercased() }
+        let result = categories.filter { $0.rawValue == search.lowercased() }
         categories = result
     }
     
@@ -91,7 +93,7 @@ final class ModelData: ObservableObject {
         }
     }
     
-    @MainActor func getDetailDataBy(key: String) async {
+    @MainActor func getDetailDataBy(key: String, and author: String) async {
         // проверка совпадает ли последний запрос.
         guard !isSame(detailInfoLastBookKey, and: key) else {
             isDetailInfoLoading.toggle()
@@ -105,6 +107,7 @@ final class ModelData: ObservableObject {
                 title: result.title,
                 key: result.key,
                 description: result.description,
+                author: author,
                 coversId: result.covers.first ?? 0
             )
             
@@ -114,12 +117,12 @@ final class ModelData: ObservableObject {
             
         } catch {
             // можно обработать ошибку, например показать алерт
-            await getDetailDataBy2(key: key)
+            await getDetailDataBy2(key: key, and: author)
             print(error.localizedDescription)
         }
     }
     
-    @MainActor func getDetailDataBy2(key: String) async {
+    @MainActor func getDetailDataBy2(key: String, and author: String) async {
         // проверка совпадает ли последний запрос.
         guard !isSame(detailInfoLastBookKey, and: key) else {
             isDetailInfoLoading.toggle()
@@ -133,6 +136,7 @@ final class ModelData: ObservableObject {
                 title: result.title,
                 key: result.key,
                 description: result.description.value,
+                author: author,
                 coversId: result.covers.first ?? 0
             )
             
@@ -164,23 +168,47 @@ extension ModelData {
             let temp = try dataManager.load(by: .favoriteBooks)
             
             // преобразуем из массива в словарь
-            favoriteBooks = temp.reduce(into: [String: MyDetailModel]()) { result, model in
+            favoriteBooksDic = temp.reduce(into: [String: MyDetailModel]()) { result, model in
                 result[model.key] = model
+            }
+            // преобразуем в массив и сохраняем в свойство
+            let arrayBooks = favoriteBooksDic.map { $0.value }
+            favoriteBooks = arrayBooks.map {
+                BookModelData(
+                    title: $0.title,
+                    key: $0.key,
+                    category: "",
+                    author: $0.author,
+                    coverId: $0.coversId
+                )
             }
             
         } catch {
-           print("😃 Не удалось загрузить favorite книги!")
+           print("❌ Не удалось загрузить favorite книги!")
         }
     }
     
-    func saveFavoritData(_ book: MyDetailModel) {
+    func saveFavoritData() {
+        // берем книгу из экрана детальной информации
+        guard let book = detailInfo else { return }
+        
+        // проверяем есть ли уже такая книга
+        guard favoriteBooksDic[book.key] == nil else { return }
+        favoriteBooksDic[book.key] = book
+        
+        // преобразуем в массив
+        let arrayBooks = favoriteBooksDic.map { $0.value }
+        favoriteBooks = arrayBooks.map {
+            BookModelData(
+                title: $0.title,
+                key: $0.key,
+                category: "",
+                author: $0.author,
+                coverId: $0.coversId
+            )
+        }
+        
         do {
-            // проверяем есть ли уже такая книга
-            guard favoriteBooks[book.key] == nil else { return }
-            favoriteBooks[book.key] = book
-            
-            // преобразуем в массив
-            let arrayBooks = favoriteBooks.map { $0.value }
             try dataManager.save(arrayBooks, by: .favoriteBooks)
         } catch {
            print("🤬 Не удалось сохранить favorite книги!")

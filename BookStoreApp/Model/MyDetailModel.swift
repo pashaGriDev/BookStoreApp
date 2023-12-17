@@ -11,6 +11,7 @@ struct MyDetailModel: Codable, Hashable {
     let title: String
     let key: String
     let description: String
+    var author: String
     let coversId: Int
     
     var isFavorit: Bool = false

@@ -23,19 +23,20 @@ struct DetailView: View {
                     author: author,
                     item: modelData.detailInfo,
                     isFavourite: $isFavourite
-                )
+                ) {
+                    // сохранить книгу
+                    modelData.saveFavoritData()
+                    //!!!: изменять флаг сердечка
+                }
             case false:
                 ProgressView()
             }
         }
         .task {
-            await modelData.getDetailDataBy(key: key)
+            await modelData.getDetailDataBy(key: key, and: author)
         }
         .onDisappear {
             modelData.isDetailInfoLoading.toggle()
-        }
-        .onAppear {
-            print("onAppear: \(key)")
         }
     }
     

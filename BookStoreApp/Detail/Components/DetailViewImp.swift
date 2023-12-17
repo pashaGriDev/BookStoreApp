@@ -10,10 +10,11 @@ import SwiftUI
 struct DetailViewImp: View {
     // сделать инициализатор
     
-     let author: String
-     var item: MyDetailModel?
-    
+    let author: String
+    var item: MyDetailModel?
     @Binding var isFavourite: Bool
+    
+    let favoriteAction: () -> Void
     
     enum Drawing {
         static let padding: CGFloat = 12.0
@@ -85,8 +86,7 @@ struct DetailViewImp: View {
         .toolbar {
             Button {
                 isFavourite.toggle()
-                //!!!: - like action
-                print("Favourite button tapped!")
+                favoriteAction()
             } label: {
                 Image(
                     systemName: isFavourite

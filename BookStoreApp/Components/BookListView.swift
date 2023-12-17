@@ -18,13 +18,13 @@ struct BookListView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(booksList.indices, id: \.self) { item in
+            ForEach(booksList, id: \.self) { item in
                 NavigationLink {
                     Text("Show detail view!")
                 } label: {
-                    CardViewCell(coverId: booksList[item].coverId ?? 0,
-                                 title: booksList[item].title,
-                                 author: booksList[item].author) {
+                    CardViewCell(coverId: item.coverId ?? 0,
+                                 title: item.title,
+                                 author: item.author) {
                         print("Close card!")
                     }
                         .padding(.horizontal)
